@@ -1,0 +1,11 @@
+.logout {
+    font-style:italic;
+    font-size: 10px;
+}
+button.right {
+    margin-right: 40px;
+}
+.album {
+    width: 150px;
+    height: 180px;
+}
