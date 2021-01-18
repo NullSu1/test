@@ -1,30 +1,18 @@
 <?php
-function connection()
-{
-//    $dsn = 'ld-iobit-com.cylexcs6bned.us-east-1.rds.amazonaws.com';
-    $dsn = '127.0.0.1';
-    $pass = '';
-//    $pass = 'yzfu9CFYcdo8LyyCg7Kd';
-    $conn = new mysqli($dsn, 'root', $pass, 'iobit');
-    if (!$conn->error) {
-        return $conn;
-    } else {
-        return false;
-    }
-}
-//echo $le = str_check("str_check(my letter)");
-$conn = connection();
-$sql = "select name from info";
-$result = $conn->query($sql);
-$list = [];
-$num = 0;
-if($result){
-    if($result->num_rows > 0){
-        while ($row = $result->fetch_array()){
-            $list[$num] = $row['name'];
-            $num++;
-        }
-    }
-}
-echo json_encode($list);
-exit();
+// 待发送的数据包
+$secret = MD5(md5('time()') . '4r5t6y');
+
+$data = array('username' => 'abc@qq.com', 'sex' => '1', 'age' => '16', 'addr' => 'guangzhou', 'timestamp' => time());
+
+// 获取sign
+
+
+// 发送的数据加上sign
+//$data['sign'] = getSign($secret, $data);
+?>
+<html>
+<form method="post" action="likou.php">
+    <input type="hidden" name="sign" value="<?= $data; ?>">
+    <button type="submit" name="sub">click</button>
+</form>
+</html>

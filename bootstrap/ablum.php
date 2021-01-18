@@ -20,7 +20,7 @@ class ablum extends db
             'create'=>"insert into ablum (user, ablum, comment, date) values ('$user', '$ablumName', '$comment', '$this->date')",
             'delete' => "delete from ablum where ablum.user='$user' and ablum.ablum='$ablumName'",
             'update' => "update ablum set ablum='$ablumName', comment='$comment'",
-            'select' => "select * from ablum where ablum.user='$user'"
+            'select' => "select * from ablum where ablum.user='$user' order by date desc"
         ];
         switch ($type){
             case 'select':

@@ -1,56 +1,87 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-    $.ajax({
-        url: 'main.php',
-        success: function (data) {
-            data = JSON.parse(data);
-            var description = "";
-            for (var i in data) {
-                description += "<li>" + data[i] + "\n";
-            }
-            console.log(description);
-        }
-    })
-</script>
 <?php
-function str_check($str)
+
+// 设置一个公钥(key)和私钥(secret)，公钥用于区分用户，私钥加密数据，不能公开
+
+$key = MD5(md5(time()) . '1q2w3e');
+$secret = MD5(md5(time()) . '4r5t6y');
+
+// 待发送的数据包
+
+$data = array('username' => 'abc@qq.com', 'sex' => '1', 'age' => '16', 'addr' => 'guangzhou', 'key' => $key, 'timestamp' => time(),);
+
+// 获取sign
+
+//die();
+
+function getSign($secret, $data)
 {
-    $str = addslashes($str);
-    $str = htmlspecialchars($str, ENT_QUOTES);
-    $str = str_replace(' ', '-', trim($str));
-    return $str;
+
+// 对数组的值按key排序
+
+    ksort($data);
+
+// 生成url的形式
+
+    $params = http_build_query($data);
+
+// 生成sign
+
+    $sign = md5($params . $secret);
+    return $sign;
 }
-function connection()
+
+// 发送的数据加上sign
+
+
+/** * 后台验证sign是否合法 *@param[type] $secret [description] *@param[type] $data  [description] *@return[type]        [description] */
+
+function verifySign($secret, $data)
 {
-//    $dsn = 'ld-iobit-com.cylexcs6bned.us-east-1.rds.amazonaws.com';
-    $dsn = '127.0.0.1';
-    $pass = '';
-//    $pass = 'yzfu9CFYcdo8LyyCg7Kd';
-    $conn = new mysqli($dsn, 'root', $pass, 'iobit');
-    if (!$conn->error) {
-        return $conn;
+
+//验证参数中是否有签名
+
+    if (!isset($data['sign']) || !$data['sign']) {
+        echo '413 发送的数据签名不存在';
+        die();
+
+    }
+
+    if (!isset($data['timestamp']) || !$data['timestamp']) {
+        echo '发送的数据参数不合法';
+        die();
+
+    }
+
+// 验证请求， 10分钟失效
+
+    if (time() - $data['timestamp'] > 600) {
+
+        echo '408 验证失效， 请重新发送请求';
+        die();
+
+    }
+
+    $sign = $data['sign'];
+
+    unset($data['sign']);
+
+    ksort($data);
+
+    $params = http_build_query($data);
+
+// $secret是通过key在api的数据库中查询得到
+
+    $sign2 = md5($params . $secret);
+    if ($sign == $sign2) {
+        echo ('200 验证通过');
     } else {
-        return false;
+        echo ('请求不合法');
     }
 }
-//echo $le = str_check("str_check(my letter)");
-$conn = connection();
-$name = 'name';
-$sql = "select $name from info";
-$result = $conn->query($sql);
-$list = [];
-$num = 0;
-if($result){
-    if($result->num_rows > 0){
-        while ($row = $result->fetch_array()){
-            $list[$num] = $row['name'];
-            $num++;
-        }
-    }
+
+//$data['sign'] = getSign($secret, $data);
+var_dump($data);
+for($i = 0; $i < 3; $i++){
+    verifySign($secret,$data);
+    echo "<br>";
 }
-echo json_encode($list);
-var_dump($list);
-exit();
-?>
-
-

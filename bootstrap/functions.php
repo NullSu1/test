@@ -11,18 +11,15 @@ $header = <<<EOF
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="icon" href="../../../../favicon.ico">
 <title>Checkout example for Bootstrap</title>
 <!-- Bootstrap 核心CSS -->
 <link rel="stylesheet" href="https://code.z01.com/v4/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://code.z01.com/boot/dist/css/font-awesome.min.css">
+<!--<link rel="stylesheet" href="https://code.z01.com/boot/dist/css/font-awesome.min.css">-->
 <!-- Favicons图标定义 -->
 <link rel="apple-touch-icon" href="https://code.z01.com/v4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="https://code.z01.com/v4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="https://code.z01.com/v4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="../assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="https://code.z01.com/v4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-<link rel="icon" href="../../favicon.ico">
 <meta name="msapplication-config" content="https://code.z01.com/v4/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
 <!-- Meta关键字定义 -->
@@ -119,8 +116,8 @@ if (isset($_REQUEST['sub'])) {
             $_SESSION['log'] = [
                 'user' => $_REQUEST['inputEmail']
             ];
-        } else echo "<script>alert('密码错误');window.location.href='signin.php'</script>";
-    } else echo "<script>alert('用户名不存在');window.location.href='signin.php'</script>";
+        } else echo "<script>alert('用户名或密码错误');window.location.href='signin.php'</script>";
+    } else echo "<script>alert('用户名或密码错误');window.location.href='signin.php'</script>";
 }
 
 if (isset($_POST['create'])) {
