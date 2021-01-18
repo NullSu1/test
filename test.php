@@ -13,7 +13,7 @@ function connection()
     }
 }
 
-function log($ip, $id, $action, $date, $line, $heart=0){
+function logs($ip, $id, $action, $date, $line, $heart=0){
     $sql = "INSERT INTO `log`(`ip`, `fbid`, `action`, `date`, `line`, `addheart`) VALUES ('$ip', '$id', '$action', '$date', '$line', '$heart')";
     return connection()->query($sql);
 }
@@ -154,7 +154,7 @@ switch ($type) {
 
                 if (shareApi($id, '2')) {
 
-                    log($ip, $id, 'share', $date, 157, 2);
+                    logs($ip, $id, 'share', $date, 157, 2);
 
                     echo json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success']);
                 } else {
@@ -261,12 +261,12 @@ switch ($type) {
 
                         shareApi($id, '3');
 
-                        log($ip, $id, 'fouraction__timeline', $date, 266, 3);
+                        logs($ip, $id, 'fouraction__timeline', $date, 266, 3);
                     } else {
 
                         addHeart($id, "2");
 
-                        log($ip, $id, 'fouraction__'.$buttonname, $date, 271, 2);
+                        logs($ip, $id, 'fouraction__'.$buttonname, $date, 271, 2);
                     }
                     echo json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success']);
                 } else {
@@ -303,7 +303,7 @@ switch ($type) {
 
                     addHeart($sharer, "1");
 
-                    log($ip, $sharer, 'sendback', $date, 308, 1);
+                    logs($ip, $sharer, 'sendback', $date, 308, 1);
                 } else {
 
                     echo json_encode(['status' => 400, 'data' => '', 'massage' => 'Have been sent back heart']);
