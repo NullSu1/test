@@ -15,7 +15,7 @@ function connection()
 
 function log($ip, $id, $action, $date, $line, $heart=0){
     $sql = "INSERT INTO `log`(`ip`, `fbid`, `action`, `date`, `line`, `addheart`) VALUES ('$ip', '$id', '$action', '$date', '$line', '$heart')";
-    connection()->query($sql);
+    return connection()->query($sql);
 }
 
 $conn = connection();
@@ -248,12 +248,10 @@ switch ($type) {
         $id = str_check($info['fbid']);
         $buttonname = str_check($info['buttonname']);
 
-        $type = str_check($info['type']);
-
         /** Check if id exists and return button status */
         if (checkId($id)) {
 
-            if (in_array($buttonname, array(['followfb', 'website', 'followins', 'timeline']))) {
+            if (in_array($buttonname, array('followfb', 'website', 'followins', 'timeline'))) {
 
                 if (fouractionCheck($id, $buttonname)) {
 
@@ -266,9 +264,9 @@ switch ($type) {
                         log($ip, $id, 'fouraction__timeline', $date, 266, 3);
                     } else {
 
-                        addHeart($sharer, "2");
+                        addHeart($id, "2");
 
-                        log($ip, $id, 'fouraction__other three', $date, 271, 2);
+                        log($ip, $id, 'fouraction__'.$buttonname, $date, 271, 2);
                     }
                     echo json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success']);
                 } else {
