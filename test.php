@@ -118,6 +118,73 @@ function getIP()
     return $cip;
 }
 
+function getCode($length, $type = true)
+{
+    if ($type) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+    } else {
+        $characters = '0123456789';
+    }
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+function encrypt($data, $key)
+{
+    $key    =   md5($key);
+    $x      =   0;
+    $len    =   strlen($data);
+    $l      =   strlen($key);
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l)
+        {
+            $x = 0;
+        }
+        $char .= $key{$x};
+        $x++;
+    }
+    for ($i = 0; $i < $len; $i++)
+    {
+        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+    }
+    return base64_encode($str);
+}
+
+function decrypt($data, $key)
+{
+    $key = md5($key);
+    $x = 0;
+    $data = base64_decode($data);
+    $len = strlen($data);
+    $l = strlen($key);
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l)
+        {
+            $x = 0;
+        }
+        $char .= substr($key, $x, 1);
+        $x++;
+    }
+    for ($i = 0; $i < $len; $i++)
+    {
+        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
+        {
+            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+        }
+        else
+        {
+            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+        }
+    }
+    return $str;
+}
+
+$_SERVER['HTTP_ORIGIN'];
+
 $ip = getIP();
 $data = $_POST['data'];
 $data = json_decode(base64_decode($data), true);
@@ -147,12 +214,22 @@ switch ($type) {
     case 'share':
         $id = str_check($info['fbid']);
         $fbname = str_check($info['fbname']);
+        $method = str_check($info['method']);
 
         if (!empty($id) && !empty($fbname)) {
 
+            $num = ($method == 'timeline') ? '3' : '2';
+
             if (checkId($id)) {
 
-                if (shareApi($id, '2')) {
+                if(!fouractionCheck($id,'timeline')){
+
+                    $num ='2';
+                }
+
+                if (shareApi($id, $num)) {
+
+                    if($method == 'timeline') fouractionStatusChange($id,'timeline');
 
                     logs($ip, $id, 'share', $date, 157, 2);
 
@@ -163,9 +240,11 @@ switch ($type) {
                 }
             } else {
 
-                $conn->query("insert into `rank` (fb_id, fb_name) values('$id', '$fbname')");
+                $conn->query("insert into `rank` (fb_id, fb_name, heard) values('$id', '$fbname', '$num')");
 
                 if ($conn->affected_rows > 0) {
+
+                    if($method == 'timeline') fouractionStatusChange($id,'timeline');
 
                     echo json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success']);
                 } else {
@@ -318,8 +397,31 @@ switch ($type) {
         }
 
         break;
+
+    case 'Congratulations':
+        $id = str_check($info['fbid']);
+
+        if(checkId($id)){
+
+            $sql = "select (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ransk from `rank` as a WHERE fb_id='113558417187568' order by heard";
+
+            $result = $conn->query($sql)->fetch_assoc()['ransk'];
+
+            echo json_encode(['status' => 200, 'rank' => $result, 'massage' => 'Request success']);
+
+        }else{
+
+            echo json_encode(['status' => 500, 'data' => '', 'massage' => 'Request data error']);
+        }
+        break;
     default:
 
         echo json_encode(['status' => 500, 'data' => '', 'massage' => 'Request data(action) error']);
         break;
 }
+
+$sql = "select (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ransk from `rank` as a WHERE fb_id='113558417187568' order by heard";
+
+$result = $conn->query($sql)->fetch_assoc()['ransk'];
+
+var_dump($result);

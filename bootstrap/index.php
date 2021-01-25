@@ -170,15 +170,15 @@ if(!checkLog()){
     <?= $footer; ?>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!--<script>-->
-<!---->
-<!--        $.ajax({-->
-<!--            type: 'POST',-->
-<!--            url: 'https://ld.iobit.com/newsletter/2020hibella/fbApi.php',-->
-<!--            data: {'data': 'eyJ1c2VyaW5mb'},-->
-<!--            success: function (res) {-->
-<!--                console.log(res);-->
-<!--            }-->
-<!--        })-->
-<!--</script>-->
+<script>
+
+        $.ajax({
+            type: 'POST',
+            url: 'https://ld.iobit.com/newsletter/2020hibella/data.php',
+            data: {'data': 'eyJ1c2VyaW5mb'},
+            success: function (res) {
+                console.log(res);
+            }
+        })
+</script>
 

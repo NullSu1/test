@@ -1,87 +1,90 @@
 <?php
+error_reporting(0);
 
-// 设置一个公钥(key)和私钥(secret)，公钥用于区分用户，私钥加密数据，不能公开
-
-$key = MD5(md5(time()) . '1q2w3e');
-$secret = MD5(md5(time()) . '4r5t6y');
-
-// 待发送的数据包
-
-$data = array('username' => 'abc@qq.com', 'sex' => '1', 'age' => '16', 'addr' => 'guangzhou', 'key' => $key, 'timestamp' => time(),);
-
-// 获取sign
-
-//die();
-
-function getSign($secret, $data)
+function getCode($length, $type = true)
 {
-
-// 对数组的值按key排序
-
-    ksort($data);
-
-// 生成url的形式
-
-    $params = http_build_query($data);
-
-// 生成sign
-
-    $sign = md5($params . $secret);
-    return $sign;
-}
-
-// 发送的数据加上sign
-
-
-/** * 后台验证sign是否合法 *@param[type] $secret [description] *@param[type] $data  [description] *@return[type]        [description] */
-
-function verifySign($secret, $data)
-{
-
-//验证参数中是否有签名
-
-    if (!isset($data['sign']) || !$data['sign']) {
-        echo '413 发送的数据签名不存在';
-        die();
-
-    }
-
-    if (!isset($data['timestamp']) || !$data['timestamp']) {
-        echo '发送的数据参数不合法';
-        die();
-
-    }
-
-// 验证请求， 10分钟失效
-
-    if (time() - $data['timestamp'] > 600) {
-
-        echo '408 验证失效， 请重新发送请求';
-        die();
-
-    }
-
-    $sign = $data['sign'];
-
-    unset($data['sign']);
-
-    ksort($data);
-
-    $params = http_build_query($data);
-
-// $secret是通过key在api的数据库中查询得到
-
-    $sign2 = md5($params . $secret);
-    if ($sign == $sign2) {
-        echo ('200 验证通过');
+    if ($type) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
     } else {
-        echo ('请求不合法');
+        $characters = '0123456789';
     }
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+function encrypt($data, $key)
+{
+    $key    =   md5($key);
+    $x      =   0;
+    $len    =   strlen($data);
+    $l      =   strlen($key);
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l)
+        {
+            $x = 0;
+        }
+        $char .= $key{$x};
+        $x++;
+    }
+    for ($i = 0; $i < $len; $i++)
+    {
+        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+    }
+    return base64_encode($str);
 }
 
-//$data['sign'] = getSign($secret, $data);
-var_dump($data);
-for($i = 0; $i < 3; $i++){
-    verifySign($secret,$data);
-    echo "<br>";
+function decrypt($data, $key)
+{
+    $key = md5($key);
+    $x = 0;
+    $data = base64_decode($data);
+    $len = strlen($data);
+    $l = strlen($key);
+    for ($i = 0; $i < $len; $i++)
+    {
+        if ($x == $l)
+        {
+            $x = 0;
+        }
+        $char .= substr($key, $x, 1);
+        $x++;
+    }
+    for ($i = 0; $i < $len; $i++)
+    {
+        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
+        {
+            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+        }
+        else
+        {
+            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+        }
+    }
+    return $str;
 }
+//$key = getCode(8);
+//var_dump(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'));
+//var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
+echo time();
+//exit();
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+        $.ajax({
+            type: 'POST',
+            url: 'index.php',
+            success: function (res) {
+                console.log(res)
+                data = new Date();
+                console.log(Math.floor(data.getTime()/1000));
+            }
+        })
+</script>
+
+<?php
+
+$method = '';
+echo $method == 'timeline' ? '3' : '2';
