@@ -5,19 +5,27 @@ use boot\ablum;
 include_once "functions.php";
 
 $page = 1;
-if(!empty($_GET['page'])){
-    $_SESSION['log'] = [
-        'user' => $_GET['user']
-    ];
-    $page=$_GET['page'];
+if (!empty($_GET['page'])) $page = $_GET['page'];
+
+if (isset($_POST['action'])) {
+	header("location:./signin.php");
+	setcookie("log", '');
+}
+if (!checkLog()) {
+	header("location:./signin.php");
 }
 
-if (!empty($_POST['action'])) {
-    header("location:./signin.php");
-    unset($_SESSION);
-}
-if(!checkLog()){
-    header("location:./signin.php");
+$ablum = new ablum();
+
+if(isset($_POST['dele'])){
+	echo $_POST['name123'];
+//	if($ablum->Ablum('delete', 'admin', $_POST['name'])){
+//		echo "<script>alert('1')</script>";
+//	}
+//	else{
+//		echo "<script>alert('0')</script>";
+//	}
+
 }
 ?>
 <?= $header; ?>
@@ -76,109 +84,116 @@ if(!checkLog()){
                         data-target="#exampleModalCenter">
                     Create
                 </button>
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="post" action="index.php">
-                                    <input type="hidden" value="<?= $_SESSION['log']['user']; ?>" name="user">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="recipient-name"
-                                                   class="col-form-label">Album
-                                                name:</label>
-                                            <input type="text" name="ablum"
-                                                   class="form-control"
-                                                   id="recipient-name"
-                                                   required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text"
-                                                   class="col-form-label">Comment:</label>
-                                            <textarea name="comment"
-                                                      class="form-control"
-                                                      id="message-text"></textarea>
-                                        </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="index.php">
+<!--                                <input type="hidden" value="--><?//= $_COOKIE['log']; ?><!--" name="user">-->
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="recipient-name"
+                                               class="col-form-label">Album
+                                            name:</label>
+                                        <input type="text" name="ablum"
+                                               class="form-control"
+                                               id="recipient-name"
+                                               required="required">
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
-                                        </button>
-                                        <button type="submit" name="create" class="btn btn-primary">Send message
-                                        </button>
+                                    <div class="form-group">
+                                        <label for="message-text"
+                                               class="col-form-label">Comment:</label>
+                                        <textarea name="comment"
+                                                  class="form-control"
+                                                  id="message-text"></textarea>
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                    </button>
+                                    <button type="submit" name="create" class="btn btn-primary">Send message
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
             </p>
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-                <?php
-                $ablum = new ablum();
-                $list = $ablum->Ablum('select', 'admin');
-                $size = sizeof($list) > $page*9 ? $page*9 : sizeof($list);
-                for ($i = ($page - 1) * 9; $i < $size; $i++): ?>
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img class="card-img-top"
-                                 data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                                 alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                                 src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22225%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20225%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_176e15555ee%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_176e15555ee%22%3E%3Crect%20width%3D%22348%22%20height%3D%22225%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.71875%22%20y%3D%22120.3%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                                 data-holder-rendered="true">
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+	<?php
+	$list = $ablum->Ablum('select', 'admin');
+	$size = sizeof($list) > $page * 9 ? $page * 9 : sizeof($list);
+	for ($i = ($page - 1) * 9; $i < $size; $i++): ?>
+        <form method="get">
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mb-4 box-shadow">
+                                <p class="card-text"><?= $list[$i]['ablum']; ?></p>
+                                <img class="card-img-top"
+                                     data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                                     alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                                     src="./img/backiee.jpg"
+                                     data-holder-rendered="true">
+                                <div class="card-body">
+                                    <p class="card-text">This is a wider card with supporting text below as a natural
+                                        lead-in to additional content. This content is a little bit longer.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                            <input type="hidden" value="<?= $list[$i]['ablum']; ?>" name="name123">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" name="dele">
+                                                dele
+                                            </button>
+                                        </div>
+                                        <small class="text-muted"><?= $list[$i]['date']; ?></small>
                                     </div>
-                                    <small class="text-muted"><?= $list[$i]['date']; ?></small>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endfor; ?>
+                </div>
             </div>
         </div>
-    </div>
-        <?php if (sizeof($list) > 9): ?>
-    <!--        分页-->
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <?php
-            $page = intval(sizeof($list) / 9) + 1;
-            for ($i = 1; $i <= $page; $i++) {
-                echo '<a href="?user='.$_SESSION['log']['user'].'&page='. $i .'"><button type="button" class="btn btn-secondary">'. $i .'</button>';
-            }
-            ?>
+        </form>
+	<?php endfor; ?>
+
+	<?php if (sizeof($list) > 9): ?>
+        <!--        分页-->
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+				<?php
+				$page = intval(sizeof($list) / 9) + 1;
+				for ($i = 1; $i <= $page; $i++) {
+					echo '<a href="?page=' . $i . '"><button type="button" class="btn btn-secondary">' . $i . '</button>';
+				}
+				?>
+            </div>
         </div>
-    </div>
-        <?php endif; ?>
-    <?= $footer; ?>
+	<?php endif; ?>
+	<?= $footer; ?>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 
-        $.ajax({
-            type: 'POST',
-            url: 'https://ld.iobit.com/newsletter/2020hibella/data.php',
-            data: {'data': 'eyJ1c2VyaW5mb'},
-            success: function (res) {
-                console.log(res);
-            }
-        })
+    $.ajax({
+        type: 'POST',
+        url: 'https://ld.iobit.com/newsletter/2020hibella/data.php',
+        data: {'data': 'eyJ1c2VyaW5mb'},
+        success: function (res) {
+            console.log(res);
+        }
+    })
 </script>
 

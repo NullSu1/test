@@ -1,6 +1,11 @@
 <?php
 error_reporting(0);
 
+/**
+ * @param $length
+ * @param bool $type
+ * @return string
+ */
 function getCode($length, $type = true)
 {
     if ($type) {
@@ -14,6 +19,15 @@ function getCode($length, $type = true)
     }
     return $randomString;
 }
+
+/**
+ * 加密数据
+ * @param $data
+ * 密钥
+ * @param $key
+ * 返回加密后的字符
+ * @return string
+ */
 function encrypt($data, $key)
 {
     $key    =   md5($key);
@@ -36,6 +50,14 @@ function encrypt($data, $key)
     return base64_encode($str);
 }
 
+/**
+ * 解密数据
+ * @param $data
+ * 密钥
+ * @param $key
+ * 返回解密后的字符
+ * @return string
+ */
 function decrypt($data, $key)
 {
     $key = md5($key);

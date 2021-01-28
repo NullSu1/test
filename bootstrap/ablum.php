@@ -5,7 +5,7 @@ namespace boot;
 require_once "db.php";
 
 
-class ablum extends db
+class Ablum extends db
 {
 
     public $date;
@@ -17,10 +17,10 @@ class ablum extends db
 
     public function Ablum($type, $user = null, $ablumName = null, $comment = null){
         $sql = [
-            'create'=>"insert into ablum (user, ablum, comment, date) values ('$user', '$ablumName', '$comment', '$this->date')",
-            'delete' => "delete from ablum where ablum.user='$user' and ablum.ablum='$ablumName'",
-            'update' => "update ablum set ablum='$ablumName', comment='$comment'",
-            'select' => "select * from ablum where ablum.user='$user' order by date desc"
+            'create'=>"insert into `ablum` (user, ablum, comment, date) values ('$user', '$ablumName', '$comment', '$this->date')",
+            'delete' => "delete from `ablum` where ablum.user='$user' and ablum.ablum='$ablumName'",
+            'update' => "update `ablum` set ablum='$ablumName', comment='$comment'",
+            'select' => "select * from `ablum` where ablum.user='$user' order by date desc"
         ];
         switch ($type){
             case 'select':
@@ -34,12 +34,10 @@ class ablum extends db
                     }
                 }
                 return $list;
-                break;
             default:
                 $result = $this->connection()->query($sql[$type]);
                 if($result) return true;
                 else return false;
-                break;
         }
     }
 }

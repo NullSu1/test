@@ -14,6 +14,7 @@ $header = <<<EOF
 <title>Checkout example for Bootstrap</title>
 <!-- Bootstrap 核心CSS -->
 <link rel="stylesheet" href="https://code.z01.com/v4/dist/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="style/home.css">-->
 <!--<link rel="stylesheet" href="https://code.z01.com/boot/dist/css/font-awesome.min.css">-->
 <!-- Favicons图标定义 -->
 <link rel="apple-touch-icon" href="https://code.z01.com/v4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -25,23 +26,6 @@ $header = <<<EOF
 <!-- Meta关键字定义 -->
 <meta name="description" content="The most popular HTML, CSS, and JS library in the world.">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-<!-- Twitter -->
-<meta name="twitter:site" content="@getbootstrap">
-<meta name="twitter:creator" content="@getbootstrap">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Introduction">
-<meta name="twitter:description" content="Get started with Bootstrap, the world's most popular framework for building responsive, mobile-first sites, with the Bootstrap CDN and a template starter page.">
-<meta name="twitter:image" content="https://code.z01.com/v4/assets/brand/bootstrap-social.png">
-<!-- Facebook -->
-<meta property="og:url" content="https://getbootstrap.com/docs/4.0/getting-started/introduction/">
-<meta property="og:title" content="Introduction">
-<meta property="og:description" content="Get started with Bootstrap, the world's most popular framework for building responsive, mobile-first sites, with the Bootstrap CDN and a template starter page.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://code.z01.com/v4/assets/brand/bootstrap-social.png">
-<meta property="og:image:secure_url" content="https://code.z01.com/v4/assets/brand/bootstrap-social.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
 <style>
 :root {--jumbotron-padding-y: 3rem;}
 .jumbotron {padding-top: var(--jumbotron-padding-y);padding-bottom: var(--jumbotron-padding-y);margin-bottom: 0;background-color: #fff;}
@@ -102,7 +86,7 @@ EOF;
 
 function checkLog()
 {
-    if (!isset($_SESSION['log']) || $_SESSION['log'] == '') {
+    if (empty($_COOKIE['log']) || $_COOKIE['log'] == '') {
         return false;
     } else {
         return true;
@@ -113,17 +97,12 @@ if (isset($_REQUEST['sub'])) {
     $sign = new singin($_REQUEST['inputPassword'],$_REQUEST['inputEmail']);
     if ($sign->checkUser()) {
         if ($sign->checkPass()) {
-            $_SESSION['log'] = [
-                'user' => $_REQUEST['inputEmail']
-            ];
+            setcookie('log',$_REQUEST['inputEmail'],time()+3600);
         } else echo "<script>alert('用户名或密码错误');window.location.href='signin.php'</script>";
     } else echo "<script>alert('用户名或密码错误');window.location.href='signin.php'</script>";
 }
 
 if (isset($_POST['create'])) {
     $ablum = new ablum;
-    $ablum->Ablum('create', $_POST['user'], $_POST['ablum'], $_POST['comment']);
-    $_SESSION['log'] = [
-        'user' => $_POST['user']
-    ];
+    $ablum->Ablum('create', $_COOKIE['log'], $_POST['ablum'], $_POST['comment']);
 }

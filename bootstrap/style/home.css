@@ -9,3 +9,7 @@ button.right {
     width: 150px;
     height: 180px;
 }
+
+.Cover{
+    background-image: url("../img/backiee.jpg");
+}
