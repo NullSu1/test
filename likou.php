@@ -86,11 +86,11 @@ function decrypt($data, $key)
     return $str;
 }
 $key = getCode(18);
-var_dump($str = encrypt(base64_encode("['status' => 500, 'data' => '', 'massage' => 'Request data error', 'massage' => 'Request data error']"), $key));
-//var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
-var_dump(str_pad($str,128));
-var_dump(substr($str,'0','128'));
-die();
+//var_dump($str = encrypt(base64_encode("['status' => 500, 'data' => '', 'massage' => 'Request data error', 'massage' => 'Request data error']"), $key));
+////var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
+//var_dump(str_pad($str,128));
+//var_dump(substr($str,'0','128'));
+//die();
 
 
 $fileName = "backiee.jpg";
@@ -104,6 +104,6 @@ header('Content-Type:text/html;charset=utf-8');
 header('Content-Length: ' . (strlen($fileContents)));
 header('Content-Disposition: attachment; filename='.$fileName);
 
-exit($fileContents);
+echo $fileContents;
 
 
