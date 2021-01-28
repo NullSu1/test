@@ -20,12 +20,10 @@ function getCode($length, $type = true)
     return $randomString;
 }
 
+
 /**
- * 加密数据
  * @param $data
- * 密钥
  * @param $key
- * 返回加密后的字符
  * @return string
  */
 function encrypt($data, $key)
@@ -87,26 +85,25 @@ function decrypt($data, $key)
     }
     return $str;
 }
-//$key = getCode(8);
-//var_dump(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'));
+$key = getCode(18);
+var_dump($str = encrypt(base64_encode("['status' => 500, 'data' => '', 'massage' => 'Request data error', 'massage' => 'Request data error']"), $key));
 //var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
-echo time();
-//exit();
-?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
-        $.ajax({
-            type: 'POST',
-            url: 'index.php',
-            success: function (res) {
-                console.log(res)
-                data = new Date();
-                console.log(Math.floor(data.getTime()/1000));
-            }
-        })
-</script>
+var_dump(str_pad($str,128));
+var_dump(substr($str,'0','128'));
+die();
 
-<?php
 
-$method = '';
-echo $method == 'timeline' ? '3' : '2';
+$fileName = "backiee.jpg";
+$file = "http://192.168.6.228/test/bootstrap/img/".$fileName;
+
+$fileContents = file_get_contents($file);
+if(!$file){
+    echo "<script>alert('打开文件失败')</script>";
+}
+header('Content-Type:text/html;charset=utf-8');
+header('Content-Length: ' . (strlen($fileContents)));
+header('Content-Disposition: attachment; filename='.$fileName);
+
+exit($fileContents);
+
+

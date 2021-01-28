@@ -1,4 +1,9 @@
 <?php
+/**
+ * @param $length
+ * @param bool $type
+ * @return string
+ */
 function getCode($length, $type = true)
 {
     if ($type) {
@@ -12,6 +17,12 @@ function getCode($length, $type = true)
     }
     return $randomString;
 }
+
+/**
+ * @param $end
+ * @param $start
+ * @return string
+ */
 function 时间差($end, $start)
 {
     $diff = $end - $start;
@@ -27,28 +38,13 @@ function 时间差($end, $start)
     return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
 }
 
-var_dump( 时间差(strtotime('2020-12-31 23:59:59'),time()));
-
-function send_email($type)
-{
-    return $type;
-}
-
-function one()
-{
-    $click = rand(1, 100);
-    if ($click <= 35) {
-        $sql = "insert into table_name (awarded_one) values ('db') ";
-        return "db";
-    } elseif ($click <= 70) {
-        $sql = "insert into table_name (awarded_one) values ('iu') ";
-        return "iu";
-    } else {
-        return null;
-    }
-}
+var_dump( 时间差(strtotime('2021-02-03 23:59:59'),time()));
 
 
+/**
+ * @param $str
+ * @return string|string[]
+ */
 function str_check($str)
 {
     $str = addslashes($str);
@@ -56,16 +52,13 @@ function str_check($str)
     $str = str_replace(' ', '-', trim($str));
     return $str;
 }
-var_dump(str_check('iu'));
 
-//$str = str_check($a[1]);
-$conn = new mysqli('127.0.0.1', 'root', '', 'iobit');
-//$sql = "insert into info (name) values ('$str')";
-//$result = $conn->query($sql);
-//if(!$result){
-//    echo $conn->error;
-//}
-
+/**
+ * @param $email
+ * @param $title
+ * @param $body
+ * @return bool|string
+ */
 function sendMail($email, $title, $body)
 {
     $url = "http://interface.iobit.com/mail/";
@@ -91,6 +84,9 @@ function sendMail($email, $title, $body)
     return $response;
 }
 
+/**
+ * @return mixed|string
+ */
 function getIP()
 {
     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
@@ -106,6 +102,10 @@ function getIP()
     return $cip;
 }
 
+/**
+ * @param $email
+ * @return false
+ */
 function mail_check($email)
 {
     if (!preg_match("^[_\.0-9a-z+-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$^", $email)) {
@@ -114,6 +114,9 @@ function mail_check($email)
     return $email;
 }
 
+/**
+ * @return false|mysqli
+ */
 function connection()
 {
     $dsn = "127.0.0.1";
@@ -145,8 +148,8 @@ function connection()
 //    }
 //}
 
-echo date('Y-m-d',strtotime("-6964 day"))."<br>";
-$days = 6964;
+echo date('Y-m-d',strtotime("-7077 day"))."<br>";
+$days = 7077;
 $year = intval($days / 365.5);
 $m = intval(($days % 365.5) / 30);
 $day = ($days % 365.5) % 30;
