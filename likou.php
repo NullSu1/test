@@ -90,7 +90,6 @@ var_dump($str = encrypt(base64_encode("['status' => 500, 'data' => '', 'massage'
 //var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
 var_dump(str_pad($str,128));
 var_dump(substr($str,'0','128'));
-die();
 
 
 $fileName = "backiee.jpg";
