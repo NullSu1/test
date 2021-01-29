@@ -8,16 +8,16 @@ error_reporting(0);
  */
 function getCode($length, $type = true)
 {
-    if ($type) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-    } else {
-        $characters = '0123456789';
-    }
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, strlen($characters) - 1)];
-    }
-    return $randomString;
+	if ($type) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+	} else {
+		$characters = '0123456789';
+	}
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	}
+	return $randomString;
 }
 
 
@@ -28,24 +28,21 @@ function getCode($length, $type = true)
  */
 function encrypt($data, $key)
 {
-    $key    =   md5($key);
-    $x      =   0;
-    $len    =   strlen($data);
-    $l      =   strlen($key);
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l)
-        {
-            $x = 0;
-        }
-        $char .= $key{$x};
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
-    }
-    return base64_encode($str);
+	$key = md5($key);
+	$x = 0;
+	$len = strlen($data);
+	$l = strlen($key);
+	for ($i = 0; $i < $len; $i++) {
+		if ($x == $l) {
+			$x = 0;
+		}
+		$char .= $key{$x};
+		$x++;
+	}
+	for ($i = 0; $i < $len; $i++) {
+		$str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+	}
+	return base64_encode($str);
 }
 
 /**
@@ -58,33 +55,28 @@ function encrypt($data, $key)
  */
 function decrypt($data, $key)
 {
-    $key = md5($key);
-    $x = 0;
-    $data = base64_decode($data);
-    $len = strlen($data);
-    $l = strlen($key);
-    for ($i = 0; $i < $len; $i++)
-    {
-        if ($x == $l)
-        {
-            $x = 0;
-        }
-        $char .= substr($key, $x, 1);
-        $x++;
-    }
-    for ($i = 0; $i < $len; $i++)
-    {
-        if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1)))
-        {
-            $str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
-        }
-        else
-        {
-            $str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
-        }
-    }
-    return $str;
+	$key = md5($key);
+	$x = 0;
+	$data = base64_decode($data);
+	$len = strlen($data);
+	$l = strlen($key);
+	for ($i = 0; $i < $len; $i++) {
+		if ($x == $l) {
+			$x = 0;
+		}
+		$char .= substr($key, $x, 1);
+		$x++;
+	}
+	for ($i = 0; $i < $len; $i++) {
+		if (ord(substr($data, $i, 1)) < ord(substr($char, $i, 1))) {
+			$str .= chr((ord(substr($data, $i, 1)) + 256) - ord(substr($char, $i, 1)));
+		} else {
+			$str .= chr(ord(substr($data, $i, 1)) - ord(substr($char, $i, 1)));
+		}
+	}
+	return $str;
 }
+
 $key = getCode(18);
 //var_dump($str = encrypt(base64_encode("['status' => 500, 'data' => '', 'massage' => 'Request data error', 'massage' => 'Request data error']"), $key));
 ////var_dump(decrypt(encrypt("['status' => 500, 'data' => '', 'massage' => 'Request data error']", '$key'), '$key'));
@@ -94,16 +86,15 @@ $key = getCode(18);
 
 
 $fileName = "backiee.jpg";
-$file = "http://192.168.6.228/test/bootstrap/img/".$fileName;
+$file = "http://192.168.6.75/test/bootstrap/img/" . $fileName;
 
-$fileContents = file_get_contents($file);
-if(!$file){
-    echo "<script>alert('打开文件失败')</script>";
+//$fileContents = file_get_contents($file);
+if (!$fileContents = file_get_contents($file)) {
+	echo "<script>alert('打开文件失败')</script>";
 }
 header('Content-Type:text/html;charset=utf-8');
 header('Content-Length: ' . (strlen($fileContents)));
-header('Content-Disposition: attachment; filename='.$fileName);
+header('Content-Disposition: attachment; filename=' . $fileName);
 
-echo $fileContents;
-
+exit($fileContents);
 

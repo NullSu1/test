@@ -27,3 +27,11 @@ D
 bootstrap/signin.php,4\c\4c8940055f9d0bfc444009e486bb063756bd4b66
 D
 bootstrap/singin.php,6\5\6539e2223acc8480ea4276058e6ac9e44076335e
+9
+	jquery.js,7\a\7a0d2a18212b79b67dee0e91e19cf1b654062c92
+9
+	merge.php,f\b\fb6529f4c3f4694cac4eff1c5cf8b7cd00c3fd96
+9
+	.htaccess,f\1\f14dd8fe84b7e99eb63debbf029152463832e7ad
+<
+erroryes.log,f\4\f429808bd7c0bc1b4732890c581e077012f19bc7
