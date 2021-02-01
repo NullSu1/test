@@ -85,8 +85,13 @@ $key = getCode(18);
 //die();
 
 
+
+
+
 $fileName = "backiee.jpg";
 $file = "http://192.168.6.75/test/bootstrap/img/" . $fileName;
+
+
 
 //$fileContents = file_get_contents($file);
 if (!$fileContents = file_get_contents($file)) {
