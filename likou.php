@@ -130,8 +130,29 @@ function authcode($string, $key = '', $operation = false, $expiry = 0)
 	}
 }
 
-var_dump(authcode('qweq1231','key2w3o9u'));
-var_dump(authcode('f97aFJPslDPYwUitj9PocdJlbgNM3HwEVF0fFIHH6BUrYZUDCg','key2w3o9u',true));
+var_dump(authcode('qweq+1231','key2w3o9u'));
+var_dump(authcode('c5013vJR4FAN5cBC1fXTYWXT7ZWp2rw5AuhTLT0dk7R6gT54z04','key2w3o9u',true));
+$VAR = 4;
+var_dump(sprintf('%0'.$VAR.'d', 0));
+
+function substrCount($string, $needle)
+{
+	$str_len = strlen($string);
+	$ned_len = strlen($needle);
+	$num = 0;
+
+	for ($i = 0; $i <= ($str_len - $ned_len); $i++) {
+		if ($string[$i] == $needle[0]) {
+			$check = substr($string, $i, $ned_len);
+			if ($check == $needle)
+				$num++;
+		}
+	}
+	return $num;
+}
+var_dump(microtime());
+echo substrCount('qweqweqrtweq', 'qweq');
+var_dump(microtime());
 
 //$fileName = "backiee.jpg";
 //$file = "http://192.168.6.75/test/bootstrap/img/" . $fileName;
