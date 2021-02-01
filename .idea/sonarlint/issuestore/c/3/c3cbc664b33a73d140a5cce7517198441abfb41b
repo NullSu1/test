@@ -1,5 +1,5 @@
 
-:php:S125"Remove this commented out code.(´ÎžÜ8‹¡’šô.
-Kphp:S121"0Add curly braces around the nested statement(s).(ºÔÉ§8ä›å™ô.
-PWeb:AvoidCommentedOutCodeCheckc"Remove this commented out code.(µ†Åé8Ú¬Ö™ô.
-PWeb:AvoidCommentedOutCodeCheckc"Remove this commented out code.(µ†Åé8Ú¬Ö™ô.
+NWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(µ†Åé8Ú¬Ö™ô.
+8php:S125"Remove this commented out code.(´ÎžÜ8‹¡’šô.
+Iphp:S121"0Add curly braces around the nested statement(s).(ºÔÉ§8ä›å™ô.
+NWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(µ†Åé8Ú¬Ö™ô.
