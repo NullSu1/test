@@ -1,9 +1,19 @@
-
+<span style="background: url(./bootstrap/img/backiee.jpg)"></span>
 <div class="script">
-    <p>123</p>
+    <p><?= $_GET['num']; ?></p>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+    $(function(){
+        $(".script").on({
+            mouseover : function(){
+                $(this).text(mGetDate(2021,2));
+            } ,
+            mouseout : function(){
+                $(this).html('123') ;
+            }
+        }) ;
+    }) ;
     function mGetDate(year,month) {
         var d = new Date(year,month,0);
         return d.getDate();
@@ -22,8 +32,5 @@
             console.log(y + "年" + m + "月" + mGetDate(y,m) + "日まで");
         }
     }
-    getTimetips()
+
 </script>
-<?php
-var_dump($_SESSION);
-?>

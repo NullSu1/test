@@ -4,7 +4,7 @@
  * @param bool $type
  * @return string
  */
-function getCode($length, $type = true)
+function getCode($length, $type = true): string
 {
     if ($type) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -23,7 +23,7 @@ function getCode($length, $type = true)
  * @param $start
  * @return string
  */
-function 时间差($end, $start)
+function timeDiff($end, $start): string
 {
     $diff = $end - $start;
     $y = intval($diff / (60 * 60 * 24 * 30 * 12));
@@ -38,7 +38,7 @@ function 时间差($end, $start)
     return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
 }
 
-var_dump( 时间差(strtotime('2021-02-03 23:59:59'),time()));
+var_dump( timeDiff(strtotime('2021-02-03 23:59:59'),time()));
 
 
 /**
@@ -87,7 +87,7 @@ function sendMail($email, $title, $body)
 /**
  * @return mixed|string
  */
-function getIP()
+function getIP(): string
 {
     if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
         $cip = $_SERVER["HTTP_CLIENT_IP"];
@@ -163,3 +163,5 @@ function Same($handle, $needle): bool
 }
 
 echo Same($_GET['a'],'qwerty') ? '123':'kkk';
+var_dump(str_split('qwerty'));
+var_dump(array_count_values(str_split('qwerty')));

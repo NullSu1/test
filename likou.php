@@ -130,11 +130,6 @@ function authcode($string, $key = '', $operation = false, $expiry = 0)
 	}
 }
 
-var_dump(authcode('qweq+1231','key2w3o9u'));
-var_dump(authcode('c5013vJR4FAN5cBC1fXTYWXT7ZWp2rw5AuhTLT0dk7R6gT54z04','key2w3o9u',true));
-$VAR = 4;
-var_dump(sprintf('%0'.$VAR.'d', 0));
-
 function substrCount($string, $needle)
 {
 	$str_len = strlen($string);
@@ -150,9 +145,7 @@ function substrCount($string, $needle)
 	}
 	return $num;
 }
-var_dump(microtime());
-echo substrCount('qweqweqrtweq', 'qweq');
-var_dump(microtime());
+
 
 //$fileName = "backiee.jpg";
 //$file = "http://192.168.6.75/test/bootstrap/img/" . $fileName;
@@ -167,3 +160,24 @@ var_dump(microtime());
 //
 //exit($fileContents);
 
+
+if(!empty($_POST['data'])){
+	echo authcode($_POST['data'],'key2w3o9u', true);
+	exit;
+}
+?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    var choose = 'choose';
+    $.ajax({
+        url:'likou.php',
+        type: "POST",
+        data:{'data':
+                "<?= authcode(sprintf('%0128d', '0')."\" . rewrwe . \"",'key2w3o9u');?>"
+        },
+	    success: function(res){
+            console.log(res);
+	    }
+    })
+</script>

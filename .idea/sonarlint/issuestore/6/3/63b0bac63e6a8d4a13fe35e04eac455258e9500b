@@ -1,28 +1,28 @@
 
-u	php:S1488"\Immediately return this expression instead of assigning it to the temporary variable "$str".(Ò¼Œ 8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(—Ëà÷øÿÿÿÿ8Å•ô.
-Iphp:S121"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
-Iphp:S121"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
-8php:S125"Remove this commented out code.(Óó¬¯8Å•ô.
-Pphp:S836"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ8Å•ô.
 _	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(¦Ÿ¨ó8Å•ô.
-d	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(½çâ§şÿÿÿÿ8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(™ßÁ»şÿÿÿÿ8Å•ô.
-Pphp:S836"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ8Å•ô.
-=php:S125"Remove this commented out code.(¶ÕéÖÿÿÿÿÿ8Å•ô.
+Iphp:S121"0Add curly braces around the nested statement(s).(òÜœÉ8…“–ô.
+Iphp:S121"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
+m	php:S1192"SDefine a constant instead of duplicating this literal "Request data error" 6 times.(æ‹¾Ö8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Å•ô.
 d	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(—Ëà÷øÿÿÿÿ8Å•ô.
 _	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(òÜœÉ8Äö––ô.
-h	php:S1192"NDefine a constant instead of duplicating this literal "Request error" 3 times.(ÖµıÏ8Å•ô.
-y	php:S1488"_Immediately return this expression instead of assigning it to the temporary variable "$result".(”ã¹8Å•ô.
-Iphp:S121"0Add curly braces around the nested statement(s).(¦Ÿ¨ó8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(½çâ§şÿÿÿÿ8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
-Nphp:S121"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Äö––ô.
 Kphp:S836"2Review the data-flow - use of uninitialized value.(›³­Ù8Å•ô.
-m	php:S1192"SDefine a constant instead of duplicating this literal "Request data error" 6 times.(æ‹¾Ö8Å•ô.
-H	php:S2115")Add password protection to this database.(ìüÀ“úÿÿÿÿ8Å•ô.
 Kphp:S836"2Review the data-flow - use of uninitialized value.(ª¨¬Ü8Å•ô.
-Iphp:S121"0Add curly braces around the nested statement(s).(òÜœÉ8…“–ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(½çâ§şÿÿÿÿ8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Äö––ô.
+Iphp:S121"0Add curly braces around the nested statement(s).(¦Ÿ¨ó8Å•ô.
+Pphp:S836"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ8Å•ô.
+d	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(½çâ§şÿÿÿÿ8Å•ô.
+y	php:S1488"_Immediately return this expression instead of assigning it to the temporary variable "$result".(”ã¹8Å•ô.
 j	php:S1192"PDefine a constant instead of duplicating this literal "Request success" 8 times.(ã­ıË8Å•ô.
+h	php:S1192"NDefine a constant instead of duplicating this literal "Request error" 3 times.(ÖµıÏ8Å•ô.
+Iphp:S121"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(—Ëà÷øÿÿÿÿ8Å•ô.
+u	php:S1488"\Immediately return this expression instead of assigning it to the temporary variable "$str".(Ò¼Œ 8Å•ô.
+8php:S125"Remove this commented out code.(Óó¬¯8Å•ô.
+=php:S125"Remove this commented out code.(¶ÕéÖÿÿÿÿÿ8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(™ßÁ»şÿÿÿÿ8Å•ô.
+Pphp:S836"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ8Å•ô.
+Nphp:S121"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
+H	php:S2115")Add password protection to this database.(ìüÀ“úÿÿÿÿ8Å•ô.

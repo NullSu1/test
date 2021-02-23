@@ -1,6 +1,11 @@
 
-Rphp:S836+"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ8âëô.
-Mphp:S836H"2Review the data-flow - use of uninitialized value.(ª¨¬Ü8âëô.
-Rphp:S836C"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ8âëô.
-Mphp:S836'"2Review the data-flow - use of uninitialized value.(›³­Ù8âëô.
-:php:S125X"Remove this commented out code.(ã©Õ³8‚Ëëô.
+ophp:S127r"ORefactor the code to avoid updating the loop counter "$a" within the loop body.(Ë§‚—şÿÿÿÿ8’ôœö.
+Lphp:S121"0Add curly braces around the nested statement(s).(°ãš–8’ôœö.
+jphp:S127l"ORefactor the code to avoid updating the loop counter "$j" within the loop body.(²í²Ü8’ôœö.
+Mphp:S836H"2Review the data-flow - use of uninitialized value.(ª¨¬Ü8’ôœö.
+Mphp:S836'"2Review the data-flow - use of uninitialized value.(›³­Ù8’ôœö.
+Rphp:S836+"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ8’ôœö.
+`	php:S3358^"DExtract this nested ternary operation into an independent statement.(¿•¨Õ8’ôœö.
+Rphp:S836C"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ8’ôœö.
+p	php:S3776X"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÎÏŞ¡8’ôœö.
+e	php:S3358c"DExtract this nested ternary operation into an independent statement.(»²³ßüÿÿÿÿ8’ôœö.
