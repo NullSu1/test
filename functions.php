@@ -129,29 +129,37 @@ function connection()
     }
 }
 
-//$conn = connection();
-//$click = rand(1, 100);
-//$name = str_check('name');
-//$email = mail_check("the.nullsu@gmail.com");
-//$ip = '1';
-//$onlya_result = '20';
-//$date = date('Y-m-d H:i:s');
-//$day = date("d");
-//var_dump(date("H"));
-//$sql = "select COUNT(*) from info where date='2020-11-11' and awarded_two!='$onlya_result'";
-//$select = $conn->query($sql)->fetch_assoc()['COUNT(*)'];
-//if (date("H") == '21') {
-//    if ($select == 0) {
-//        echo $select;
-//    } else {
-//        echo $select;
-//    }
-//}
+/**
+ * 获取字符串重组数组
+ * @param $str
+ * @return array
+ */
+function countStr($str): array
+{
+	$str_array = str_split($str);
+	$str_array = array_count_values($str_array);
+	arsort($str_array);
+	return $str_array;
+}
 
-echo date('Y-m-d',strtotime("-7077 day"))."<br>";
-$days = 7077;
-$year = intval($days / 365.5);
-$m = intval(($days % 365.5) / 30);
-$day = ($days % 365.5) % 30;
-echo $year.'年'.$m.'月'.$day.'天';
-//var_dump($days % 365.5);
+/**
+ * 判断两字符串同分异构
+ * @param $handle *被匹配字符
+ * @param $needle *匹配字符
+ * @return bool
+ */
+function Same($handle, $needle): bool
+{
+	if (strlen($handle) == strlen($needle)) {
+		$handle_array = countStr($handle);
+		$needle_array = countStr($needle);
+		if (empty(array_diff_assoc($handle_array, $needle_array))) {
+			if (empty(array_diff_assoc($needle_array, $handle_array))) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+echo Same($_GET['a'],'qwerty') ? '123':'kkk';
