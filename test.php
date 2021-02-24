@@ -64,7 +64,7 @@ function addHeart($id, $num)
     return connection()->query("update `rank` set heard=heard+$num where fb_id='$id'");
 }
 
-function checkShare($id)
+function checkShare($id): bool
 {
 
     $num_letter_sql = "SELECT count(*) FROM `letter` where fb_id='$id'";

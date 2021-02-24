@@ -106,7 +106,7 @@ function getIP(): string
  * @param $email
  * @return false
  */
-function mail_check($email)
+function mail_check($email): bool
 {
     if (!preg_match("^[_\.0-9a-z+-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$^", $email)) {
         return false;
@@ -130,7 +130,7 @@ function connection()
 }
 
 /**
- * 获取字符串重组数组
+ * 获取字符串重组数组,以字符为key,每个字符出现次数为value
  * @param $str
  * @return array
  */
@@ -144,8 +144,8 @@ function countStr($str): array
 
 /**
  * 判断两字符串同分异构
- * @param $handle *被匹配字符
- * @param $needle *匹配字符
+ * @param $handle <p>被匹配字符</p>
+ * @param $needle <p>匹配字符</p>
  * @return bool
  */
 function Same($handle, $needle): bool
@@ -165,3 +165,7 @@ function Same($handle, $needle): bool
 echo Same($_GET['a'],'qwerty') ? '123':'kkk';
 var_dump(str_split('qwerty'));
 var_dump(array_count_values(str_split('qwerty')));
+print_r(array_change_key_case(array_count_values(str_split('qwerty')),CASE_UPPER));
+echo "<br>";
+$a = [1,2,3,4,5,6,7];
+var_dump(implode(array_merge($a, array_fill(count($a), 128-count($a), 0))));
