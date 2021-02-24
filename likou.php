@@ -130,7 +130,7 @@ function authcode($string, $key = '', $operation = false, $expiry = 0)
 	}
 }
 
-function substrCount($string, $needle)
+function substrCount($string, $needle): int
 {
 	$str_len = strlen($string);
 	$ned_len = strlen($needle);
