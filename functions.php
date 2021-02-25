@@ -38,9 +38,6 @@ function timeDiff($end, $start): string
     return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
 }
 
-var_dump( timeDiff(strtotime('2021-02-03 23:59:59'),time()));
-
-
 /**
  * @param $str
  * @return string|string[]
@@ -278,11 +275,17 @@ function Same($handle, $needle): bool
 	return false;
 }
 
+
 echo Same($_GET['a'],'qwerty') ? '123':'kkk';
-var_dump(str_split('qwerty'));
-var_dump(array_count_values(str_split('qwerty')));
+//var_dump(str_split('qwerty'));
+//var_dump(array_count_values(str_split('qwerty')));
 print_r(array_change_key_case(array_count_values(str_split('qwerty')),CASE_UPPER));
 echo "<br>";
 $a = [1,2,3,4,5,6,7];
 var_dump(implode(array_merge($a, array_fill(count($a), 128-count($a), 0))));
-var_dump(array_fill_keys($a,$a));
+var_dump(implode(array_pad($a,128,0)));
+var_dump(str_pad(implode($a),128,0));
+var_dump($secret_code = authcode(bin2hex(json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success'])),md5('1q2w3e')));
+
+var_dump(hex2bin(authcode($secret_code,md5('1q2w3e'),true)));
+var_dump(setlocale(LC_ALL ,0));
