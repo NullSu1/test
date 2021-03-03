@@ -276,6 +276,7 @@ function Same($handle, $needle): bool
 }
 
 
+
 echo Same($_GET['a'],'qwerty') ? '123':'kkk';
 //var_dump(str_split('qwerty'));
 //var_dump(array_count_values(str_split('qwerty')));
