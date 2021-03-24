@@ -1,5 +1,5 @@
 
 ^php:S101"GRename class "pic" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(­€ÚÚúÿÿÿÿ
+Bphp:S121"0Add curly braces around the nested statement(s).(ÙúÚì
 X	php:S1126"EReplace this "if-then-else" statement by a single "return" statement.(ÙúÚì
 Gphp:S121"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ
-Bphp:S121"0Add curly braces around the nested statement(s).(ÙúÚì

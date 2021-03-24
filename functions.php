@@ -126,7 +126,6 @@ function connection()
     }
 }
 
-
 /**
  * 返回加密后的字符
  *
@@ -142,15 +141,17 @@ function encrypt($data, $key): string
 	$x = 0;
 	$len = strlen($data);
 	$l = strlen($key);
+	$char = '';
+	$str = '';
 	for ($i = 0; $i < $len; $i++) {
 		if ($x == $l) {
 			$x = 0;
 		}
-		$char .= $key{$x};
+		$char .= $key[$x];
 		$x++;
 	}
 	for ($i = 0; $i < $len; $i++) {
-		$str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+		$str .= chr(ord($data[$i]) + (ord($char[$i])) % 256);
 	}
 	return base64_encode($str);
 }
@@ -247,7 +248,7 @@ function authcode(string $string, $key = '', $operation = false, $expiry = 0): s
  * @param $str
  * @return array
  */
-function countStr($str): array
+function str_count_array($str): array
 {
 	$str_array = str_split($str);
 	$str_array = array_count_values($str_array);
@@ -264,8 +265,8 @@ function countStr($str): array
 function Same($handle, $needle): bool
 {
 	if (strlen($handle) == strlen($needle)) {
-		$handle_array = countStr($handle);
-		$needle_array = countStr($needle);
+		$handle_array = str_count_array($handle);
+		$needle_array = str_count_array($needle);
 		if (empty(array_diff_assoc($handle_array, $needle_array))) {
 			if (empty(array_diff_assoc($needle_array, $handle_array))) {
 				return true;
@@ -277,10 +278,10 @@ function Same($handle, $needle): bool
 
 
 
-echo Same($_GET['a'],'qwerty') ? '123':'kkk';
+echo @Same($_GET['a'],'qwwerty') ? '123':'kkk';
 //var_dump(str_split('qwerty'));
 //var_dump(array_count_values(str_split('qwerty')));
-print_r(array_change_key_case(array_count_values(str_split('qwerty')),CASE_UPPER));
+print_r(array_change_key_case(array_count_values(str_split('qwretywwret')),CASE_UPPER));
 echo "<br>";
 $a = [1,2,3,4,5,6,7];
 var_dump(implode(array_merge($a, array_fill(count($a), 128-count($a), 0))));
@@ -289,4 +290,3 @@ var_dump(str_pad(implode($a),128,0));
 var_dump($secret_code = authcode(bin2hex(json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success'])),md5('1q2w3e')));
 
 var_dump(hex2bin(authcode($secret_code,md5('1q2w3e'),true)));
-var_dump(setlocale(LC_ALL ,0));

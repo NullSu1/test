@@ -51,3 +51,11 @@ A
 images/editor.svg,d\8\d8f3bed64446c20504085c39cac1c4833d5ef3e0
 6
 21.php,0\c\0c0e2715d1b48006ba5b43644fc2034af1d9609e
+=
+functions.php,6\4\643aa1403c67715cb89bd66603f19c787bddaea9
+9
+	html.html,4\a\4a12da21d49977efb6ed42d4e4b0dd40b9403a0e
+=
+composer.json,3\9\3957b91a0d8450cea0115cfd5af69eac90d75897
+=
+composer.lock,c\3\c3262e2a0879195bd6a727e90f768bc85ad79ffd

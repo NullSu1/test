@@ -20,8 +20,11 @@ function logs($ip, $id, $action, $date, $line, $heart=0){
 
 $conn = connection();
 
-/** */
-function str_check($str)
+/**
+ * @param string $str
+ * @return string|string[]
+ */
+function str_check(string $str)
 {
     $str = addslashes($str);
     $str = htmlspecialchars($str);
@@ -137,18 +140,20 @@ function encrypt($data, $key)
     $x      =   0;
     $len    =   strlen($data);
     $l      =   strlen($key);
+	$char = '';
+	$str = '';
     for ($i = 0; $i < $len; $i++)
     {
         if ($x == $l)
         {
             $x = 0;
         }
-        $char .= $key{$x};
+        $char .= $key[$x];
         $x++;
     }
     for ($i = 0; $i < $len; $i++)
     {
-        $str .= chr(ord($data{$i}) + (ord($char{$i})) % 256);
+        $str .= chr(ord($data[$i]) + (ord($char[$i])) % 256);
     }
     return base64_encode($str);
 }
@@ -183,10 +188,8 @@ function decrypt($data, $key)
     return $str;
 }
 
-$_SERVER['HTTP_ORIGIN'];
-
 $ip = getIP();
-$data = $_POST['data'];
+$data = $_POST['data'] = 'eyJyYW5rIjp7InBhZ2UiOjEsInJvdyI6NX19';
 $data = json_decode(base64_decode($data), true);
 $type = array_keys($data)[0];
 $info = $data[$type];
@@ -257,14 +260,27 @@ switch ($type) {
         }
         break;
     case 'rank':
-        $sql = "select fb_id as fbid, fb_name as fbname, heard as heart, (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ranking from `rank` as a order by heard DESC";
+    	$page = str_check($info['page']);
+
+    	$row = str_check($info['row']);
+
+    	$start = (($page - 1) * $row);
+
+        $sql = "select fb_id as fbid, fb_name as fbname, heard as heart, (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ranking from `rank` as a order by heard DESC limit '$start','$row'";
+
         $num = 0;
+
         $list = [];
+
         $result = $conn->query($sql);
+
         if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $list[$num] = $row;
-                $num++;
+
+        	while ($row = $result->fetch_assoc()) {
+
+        		$list[$num] = $row;
+
+        		$num++;
             }
         }
         echo json_encode(['status' => 200, 'data' => $list, 'massage' => 'Request success']);
@@ -403,11 +419,15 @@ switch ($type) {
 
         if(checkId($id)){
 
-            $sql = "select (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ransk from `rank` as a WHERE fb_id='113558417187568' order by heard";
+            $sql = "select heard, (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ransk from `rank` as a WHERE fb_id='113558417187568' order by heard";
 
-            $result = $conn->query($sql)->fetch_assoc()['ransk'];
+            $rank = $conn->query($sql)->fetch_assoc()['ransk'];
 
-            echo json_encode(['status' => 200, 'rank' => $result, 'massage' => 'Request success']);
+            $heard = $conn->query($sql)->fetch_assoc()['heard'];
+
+	        $status = (time() > strtotime("2021-12-31 23:59:59")) ? false : true;
+
+            echo json_encode(['status' => 200, 'rank' => $heard, 'massage' => 'Request success']);
 
         }else{
 
@@ -422,6 +442,9 @@ switch ($type) {
 
 $sql = "select (select count(distinct(heard)) from `rank` as b where b.heard > a.heard ) + 1 as ransk from `rank` as a WHERE fb_id='113558417187568' order by heard";
 
-$result = $conn->query($sql)->fetch_assoc()['ransk'];
+$result = $conn->query($sql)->fetch_assoc()['ransk'];;
 
 var_dump($result);
+$status = (time() > strtotime("2021-12-31 23:59:59")) ? false : true;
+if($status){echo 'live'; }
+else {echo 'die';}
