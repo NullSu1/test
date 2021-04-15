@@ -1,16 +1,12 @@
 
-8php:S125"Remove this commented out code.(­şà8¤Æ¤ø/
-o	php:S1488"\Immediately return this expression instead of assigning it to the temporary variable "$str".(æ±İ“
-6php:S125"Remove this commented out code.(Œ©®şÿÿÿÿ
-aphp:S127"ORefactor the code to avoid updating the loop counter "$j" within the loop body.(²í²Ü
-W	php:S3358"DExtract this nested ternary operation into an independent statement.(¿•¨Õ
-Iphp:S836"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ
-l	php:S3776"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(Şäã¶ıÿÿÿÿ
-\	php:S3358"DExtract this nested ternary operation into an independent statement.(»²³ßüÿÿÿÿ
-<	php:S2115")Add password protection to this database.(á„™
-Dphp:S836"2Review the data-flow - use of uninitialized value.(ª¨¬Ü
-G	php:S1066"/Merge this if statement with the enclosing one.(Ş”µşÿÿÿÿ
-Dphp:S836"2Review the data-flow - use of uninitialized value.(›³­Ù
-=php:S125"Remove this commented out code.(û®‘¼üÿÿÿÿ8¤Æ¤ø/
-Iphp:S836"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ
-fphp:S127"ORefactor the code to avoid updating the loop counter "$a" within the loop body.(Ë§‚—şÿÿÿÿ
+>	php:S2115y")Add password protection to this database.(á„™
+8php:S125G"Remove this commented out code.(Œ©®şÿÿÿÿ
+Z	php:S3358Ï"DExtract this nested ternary operation into an independent statement.(¿•¨Õ
+Gphp:S836¸"2Review the data-flow - use of uninitialized value.(ª¨¬Ü
+J	php:S1066"/Merge this if statement with the enclosing one.(Ş”µşÿÿÿÿ
+Lphp:S836³"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ
+o	php:S3776É"TRefactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.(Şäã¶ıÿÿÿÿ
+q	php:S14881"\Immediately return this expression instead of assigning it to the temporary variable "$str".(æ±İ“
+kphp:S127İ"ORefactor the code to avoid updating the loop counter "$j" within the loop body.(²í²Ü8¹³ê™†/
+iphp:S127ã"ORefactor the code to avoid updating the loop counter "$a" within the loop body.(Ë§‚—şÿÿÿÿ
+Z	php:S3358Ô"DExtract this nested ternary operation into an independent statement.(Ğ¼è§

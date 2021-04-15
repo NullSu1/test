@@ -1,28 +1,24 @@
 
-m	php:S1192Î"PDefine a constant instead of duplicating this literal "Request success" 8 times.(ã­ıË8Å•ô.
-a	php:S11263"EReplace this "if-then-else" statement by a single "return" statement.(òÜœÉ8Äö––ô.
-f	php:S1126_"EReplace this "if-then-else" statement by a single "return" statement.(—Ëà÷øÿÿÿÿ8Å•ô.
-Kphp:S121P"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
-f	php:S1126N"EReplace this "if-then-else" statement by a single "return" statement.(½çâ§şÿÿÿÿ8Å•ô.
-Kphp:S121W"0Add curly braces around the nested statement(s).(¦Ÿ¨ó8Å•ô.
-?php:S125"Remove this commented out code.(¶ÕéÖÿÿÿÿÿ8Å•ô.
-Nphp:S836°"2Review the data-flow - use of uninitialized value.(ª¨¬Ü8Å•ô.
-Kphp:S1213"0Add curly braces around the nested statement(s).(òÜœÉ8…“–ô.
-Sphp:S836—"2Review the data-flow - use of uninitialized value.(Ê«ø²ûÿÿÿÿ8Å•ô.
-w	php:S1488"\Immediately return this expression instead of assigning it to the temporary variable "$str".(Ò¼Œ 8Å•ô.
-Sphp:S836©"2Review the data-flow - use of uninitialized value.(û°Îìøÿÿÿÿ8Å•ô.
-Qphp:S121÷"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
-{	php:S1488f"_Immediately return this expression instead of assigning it to the temporary variable "$result".(”ã¹8Å•ô.
-p	php:S1192Ó"SDefine a constant instead of duplicating this literal "Request data error" 6 times.(æ‹¾Ö8Å•ô.
-Nphp:S836’"2Review the data-flow - use of uninitialized value.(›³­Ù8Å•ô.
-:php:S125"Remove this commented out code.(Óó¬¯8Å•ô.
-Pphp:S121N"0Add curly braces around the nested statement(s).(½çâ§şÿÿÿÿ8Å•ô.
-Kphp:S121X"0Add curly braces around the nested statement(s).(ş½¡8Å•ô.
-Qphp:S121î"0Add curly braces around the nested statement(s).(™ßÁ»şÿÿÿÿ8Å•ô.
-Pphp:S121`"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Äö––ô.
-J	php:S2115")Add password protection to this database.(ìüÀ“úÿÿÿÿ8Å•ô.
-a	php:S1126W"EReplace this "if-then-else" statement by a single "return" statement.(¦Ÿ¨ó8Å•ô.
-k	php:S1192Ğ"NDefine a constant instead of duplicating this literal "Request error" 3 times.(ÖµıÏ8Å•ô.
-Pphp:S1214"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8Å•ô.
-Pphp:S121_"0Add curly braces around the nested statement(s).(—Ëà÷øÿÿÿÿ8Å•ô.
-Qphp:S121è"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8Å•ô.
+Qphp:S121é"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8µáÂã†/
+p	php:S1192Ô"SDefine a constant instead of duplicating this literal "Request data error" 6 times.(æ‹¾Ö8µáÂã†/
+Kphp:S121^"0Add curly braces around the nested statement(s).(ş½¡8µáÂã†/
+w	php:S1488""\Immediately return this expression instead of assigning it to the temporary variable "$str".(Ò¼Œ 8ƒÑã†/
+Pphp:S121T"0Add curly braces around the nested statement(s).(½çâ§şÿÿÿÿ8µáÂã†/
+a	php:S11269"EReplace this "if-then-else" statement by a single "return" statement.(òÜœÉ8µáÂã†/
+Pphp:S121e"0Add curly braces around the nested statement(s).(—Ëà÷øÿÿÿÿ8µáÂã†/
+Qphp:S121ü"0Add curly braces around the nested statement(s).(™ßÁ»şÿÿÿÿ8µáÂã†/
+J	php:S2115")Add password protection to this database.(ìüÀ“úÿÿÿÿ8µáÂã†/
+Kphp:S1219"0Add curly braces around the nested statement(s).(òÜœÉ8µáÂã†/
+k	php:S1192Ñ"NDefine a constant instead of duplicating this literal "Request error" 3 times.(ÖµıÏ8µáÂã†/
+Kphp:S121]"0Add curly braces around the nested statement(s).(¦Ÿ¨ó8µáÂã†/
+f	php:S1126T"EReplace this "if-then-else" statement by a single "return" statement.(½çâ§şÿÿÿÿ8µáÂã†/
+Qphp:S121ø"0Add curly braces around the nested statement(s).(Üğµ¡üÿÿÿÿ8µáÂã†/
+Kphp:S121V"0Add curly braces around the nested statement(s).(ş½¡8µáÂã†/
+?php:S125"Remove this commented out code.(¶ÕéÖÿÿÿÿÿ8µáÂã†/
+{	php:S1488l"_Immediately return this expression instead of assigning it to the temporary variable "$result".(”ã¹8µáÂã†/
+Pphp:S121f"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8µáÂã†/
+:php:S125"Remove this commented out code.(Óó¬¯8µáÂã†/
+Pphp:S121:"0Add curly braces around the nested statement(s).(Î¯—³øÿÿÿÿ8µáÂã†/
+f	php:S1126e"EReplace this "if-then-else" statement by a single "return" statement.(—Ëà÷øÿÿÿÿ8µáÂã†/
+a	php:S1126]"EReplace this "if-then-else" statement by a single "return" statement.(¦Ÿ¨ó8µáÂã†/
+m	php:S1192Ï"PDefine a constant instead of duplicating this literal "Request success" 8 times.(ã­ıË8µáÂã†/

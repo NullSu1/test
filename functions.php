@@ -1,3 +1,5 @@
+<a href="https://www.iobit.com/buy.php?product=jp-au141pcpurchase3480&ref=jp_au141pcpurchase2101a3480<?= $_GET['a']?>&refs=jp_purchase_au">今すぐアップグレード</a>
+<!--<a href='qweqwe"></a><script>alert('qwe')</script><a href="'>q</a>-->
 <?php
 /**
  * @param $length
@@ -6,16 +8,16 @@
  */
 function getCode($length, $type = true): string
 {
-    if ($type) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-    } else {
-        $characters = '0123456789';
-    }
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, strlen($characters) - 1)];
-    }
-    return $randomString;
+	if ($type) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+	} else {
+		$characters = '0123456789';
+	}
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, strlen($characters) - 1)];
+	}
+	return $randomString;
 }
 
 /**
@@ -25,17 +27,17 @@ function getCode($length, $type = true): string
  */
 function timeDiff($end, $start): string
 {
-    $diff = $end - $start;
-    $y = intval($diff / (60 * 60 * 24 * 30 * 12));
-    $diff -= $y * 60 * 60 * 24 * 30 * 12;
-    $m = intval($diff / (60 * 60 * 24 * 30));
-    $diff -= $m * 60 * 60 * 24 * 30;
-    $d = intval($diff / (60 * 60 * 24));
-    $diff -= $d * 60 * 60 * 24;
-    $h = intval($diff / (60 * 60));
-    $diff -= $h * 60 * 60;
-    $i = intval($diff / 60);
-    return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
+	$diff = $end - $start;
+	$y = intval($diff / (60 * 60 * 24 * 30 * 12));
+	$diff -= $y * 60 * 60 * 24 * 30 * 12;
+	$m = intval($diff / (60 * 60 * 24 * 30));
+	$diff -= $m * 60 * 60 * 24 * 30;
+	$d = intval($diff / (60 * 60 * 24));
+	$diff -= $d * 60 * 60 * 24;
+	$h = intval($diff / (60 * 60));
+	$diff -= $h * 60 * 60;
+	$i = intval($diff / 60);
+	return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
 }
 
 /**
@@ -44,10 +46,10 @@ function timeDiff($end, $start): string
  */
 function str_check($str)
 {
-    $str = addslashes($str);
-    $str = htmlspecialchars($str, ENT_QUOTES);
-    $str = str_replace(' ', '-', trim($str));
-    return $str;
+	$str = addslashes($str);
+	$str = htmlspecialchars($str, ENT_QUOTES);
+	$str = str_replace(' ', '-', trim($str));
+	return $str;
 }
 
 /**
@@ -58,27 +60,27 @@ function str_check($str)
  */
 function sendMail($email, $title, $body)
 {
-    $url = "http://interface.iobit.com/mail/";
+	$url = "http://interface.iobit.com/mail/";
 
-    $post_data['subject'] = $title;
-    $post_data['body'] = $body;
-    $post_data['tname'] = "";
-    $post_data['email'] = $email;
-    $post_data['fname'] = "IObit";
-    $post_data['femail'] = "iobitfacebook@iobit.com";
-    $post_data['slat'] = '8dcdbc87be2dc42dd3ec9cae301a12d3';
-    $post_data['attachment'] = 0;
-    //$post_data['callback'] 		= "http://test.iobit.com/pwei/test_mail_api/return.php";
+	$post_data['subject'] = $title;
+	$post_data['body'] = $body;
+	$post_data['tname'] = "";
+	$post_data['email'] = $email;
+	$post_data['fname'] = "IObit";
+	$post_data['femail'] = "iobitfacebook@iobit.com";
+	$post_data['slat'] = '8dcdbc87be2dc42dd3ec9cae301a12d3';
+	$post_data['attachment'] = 0;
+	//$post_data['callback'] 		= "http://test.iobit.com/pwei/test_mail_api/return.php";
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_REFERER, 'http://www.iobit.com/');
-    curl_setopt($ch, CURLOPT_VERBOSE, 1);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    return $response;
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_REFERER, 'http://www.iobit.com/');
+	curl_setopt($ch, CURLOPT_VERBOSE, 1);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	return $response;
 }
 
 /**
@@ -86,17 +88,17 @@ function sendMail($email, $title, $body)
  */
 function getIP(): string
 {
-    if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
-        $cip = $_SERVER["HTTP_CLIENT_IP"];
-    } elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-        $ip_arr = explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"]);
-        $cip = $ip_arr[0];
-    } elseif (!empty($_SERVER["REMOTE_ADDR"])) {
-        $cip = $_SERVER["REMOTE_ADDR"];
-    } else {
-        $cip = '';
-    }
-    return $cip;
+	if (!empty($_SERVER["HTTP_CLIENT_IP"])) {
+		$cip = $_SERVER["HTTP_CLIENT_IP"];
+	} elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+		$ip_arr = explode(',', $_SERVER["HTTP_X_FORWARDED_FOR"]);
+		$cip = $ip_arr[0];
+	} elseif (!empty($_SERVER["REMOTE_ADDR"])) {
+		$cip = $_SERVER["REMOTE_ADDR"];
+	} else {
+		$cip = '';
+	}
+	return $cip;
 }
 
 /**
@@ -105,10 +107,10 @@ function getIP(): string
  */
 function mail_check($email): bool
 {
-    if (!preg_match("^[_\.0-9a-z+-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$^", $email)) {
-        return false;
-    }
-    return $email;
+	if (!preg_match("^[_\.0-9a-z+-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$^", $email)) {
+		return false;
+	}
+	return $email;
 }
 
 /**
@@ -116,14 +118,14 @@ function mail_check($email): bool
  */
 function connection()
 {
-    $dsn = "127.0.0.1";
-    $pass = '';
-    $conn = new mysqli($dsn, 'root', $pass, 'iobit');
-    if (!$conn->error) {
-        return $conn;
-    } else {
-        return false;
-    }
+	$dsn = "127.0.0.1";
+	$pass = '';
+	$conn = new mysqli($dsn, 'root', $pass, 'iobit');
+	if (!$conn->error) {
+		return $conn;
+	} else {
+		return false;
+	}
 }
 
 /**
@@ -209,7 +211,7 @@ function authcode(string $string, $key = '', $operation = false, $expiry = 0): s
 	$cryptkey = $keya . md5($keya . $keyc);
 	$key_length = strlen($cryptkey);
 	$string = $operation ? base64_decode(substr($string, $ckey_length)) :
-		sprintf('%010d', $expiry ? $expiry + time() : 0) . substr(md5($string . $keyb), 0, 16) . $string;
+		sprintf('%010d', ($expiry ? $expiry + time() : 0)) . substr(md5($string . $keyb), 0, 16) . $string;
 	$string_length = strlen($string);
 	$result = '';
 	$box = range(0, 255);
@@ -268,25 +270,26 @@ function Same($handle, $needle): bool
 		$handle_array = str_count_array($handle);
 		$needle_array = str_count_array($needle);
 		if (empty(array_diff_assoc($handle_array, $needle_array))) {
-			if (empty(array_diff_assoc($needle_array, $handle_array))) {
+//			if (empty(array_diff_assoc($needle_array, $handle_array))) {
 				return true;
-			}
+//			}
 		}
 	}
 	return false;
 }
+$k = [4,3,2,1,4];
+arsort($k);
+var_dump($k);
 
+echo @Same($_GET['a'], 'qwerty') ? '123' : 'kkk';
 
-
-echo @Same($_GET['a'],'qwwerty') ? '123':'kkk';
-//var_dump(str_split('qwerty'));
-//var_dump(array_count_values(str_split('qwerty')));
-print_r(array_change_key_case(array_count_values(str_split('qwretywwret')),CASE_UPPER));
+print_r(array_change_key_case(array_count_values(str_split('qwwerty')), CASE_UPPER));
 echo "<br>";
-$a = [1,2,3,4,5,6,7];
-var_dump(implode(array_merge($a, array_fill(count($a), 128-count($a), 0))));
-var_dump(implode(array_pad($a,128,0)));
-var_dump(str_pad(implode($a),128,0));
-var_dump($secret_code = authcode(bin2hex(json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success'])),md5('1q2w3e')));
+$a = [1, 2, 3, 4, 5, 6, 7];
+var_dump(array_reverse($a));
+var_dump(implode(array_merge($a, array_fill(count($a), 128 - count($a), 0))));
+var_dump(implode(array_pad($a, 128, 0)));
+var_dump(str_pad(implode($a), 128, 0));
+var_dump($secret_code = authcode(bin2hex(json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success'])), md5('1q2w3e')));
 
-var_dump(hex2bin(authcode($secret_code,md5('1q2w3e'),true)));
+var_dump(hex2bin(authcode($secret_code, md5('1q2w3e'), true)));

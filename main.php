@@ -1,13 +1,25 @@
 <?php
 
+
+
+die();
+
 $redis = new Redis();
 
 var_dump($redis->connect('127.0.0.1', 6379));
 $arList = $redis->keys("*");
-$redis->set('demo', 'kkk');
-$redis->del('demo');
-var_dump($redis->get('peng'));
-var_dump($arList);
+$redis->set('demo', 'kkk','3');
+$redis->incr('demo');
+//sleep('10');
+//$redis->del('demo');
+//var_dump($redis->get('peng'));
+echo microtime();
+$num = 0;
+while ($redis->get('demo')){
+	$num ++;
+}
+var_dump($num);
+echo microtime();
 
 die();
 
@@ -43,41 +55,3 @@ if ($result = $mysqli->query("SELECT * from rank")) {
 }
 
 echo strtotime("2020-10-13 23:59:59");
-
-// dmstr\widgets\Menu::widget(
-//            [
-//                'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-//                'items' => [
-//                    ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-//                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-//                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-//                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-//                    [
-//                        'label' => 'Some tools',
-//                        'icon' => 'share',
-//                        'url' => '#',
-//                        'items' => [
-//                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-//                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-//                            [
-//                                'label' => 'Level One',
-//                                'icon' => 'circle-o',
-//                                'url' => '#',
-//                                'items' => [
-//                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-//                                    [
-//                                        'label' => 'Level Two',
-//                                        'icon' => 'circle-o',
-//                                        'url' => '#',
-//                                        'items' => [
-//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-//                                        ],
-//                                    ],
-//                                ],
-//                            ],
-//                        ],
-//                    ],
-//                ],
-//            ]
-//        )

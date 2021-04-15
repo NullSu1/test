@@ -1,5 +1,13 @@
+
+<div id="time" onclick="f()">时间</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
+
+    function f() {
+        date = new Date();
+        $("#time").html('<a href="img/backiee.jpg">'+date.toTimeString()+'</a>');
+        setTimeout('f()',1000);
+    }
 
     $.ajax({
         type: 'POST',
