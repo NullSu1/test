@@ -1,5 +1,7 @@
 <?php
-require_once 'db.php';
+
+
+use main\db;
 
 class MysqlQuery extends db
 {
@@ -62,36 +64,26 @@ class MysqlQuery extends db
 
     /**
      * @param $sql
-     * @return array
-     */
-    function selectQuery($sql)
-    {
-        $list = [];
-
-        $result = $this->Conn()->query($sql);
-
-        if ($result->num_rows > 0) {
-
-            while ($row = $result->fetch_assoc()) {
-
-                $list[] = $row;
-            }
-        }
-        return $list;
-    }
-
-    /**
-     * @param $sql
      * @return bool
      */
     function changeQuery($sql){
 
-        $result = $this->Conn()->query($sql);
+        parent::Conn()->query($sql);
 
         if($this->Conn()->affected_rows > 0){
 
             return true;
         }
         return false;
+    }
+
+    function getLists($item = '', $db = '', $table = ''){
+
+        if(!empty($db))
+            $this->Conn()->select_db($db);
+
+        $sql = "select $item from `$table` where 1 group by $item";
+
+        return $this->selectQuery($sql);
     }
 }

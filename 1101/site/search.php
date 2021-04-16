@@ -63,4 +63,4 @@ $page = empty($_GET['page']) ? 1 : $_GET['page'];
         </tr>
     </table>
 </div>
-<?php include_once "footer.php"?>
+<?php include_once "footer.php" ?>

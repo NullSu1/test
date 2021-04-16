@@ -1,5 +1,10 @@
 <?php
 
+namespace main;
+
+use Exception;
+use mysqli;
+
 class db {
 
     public array $host;
@@ -13,8 +18,6 @@ class db {
      * @return mysqli
      */
     function Conn(){
-		mysqli_report(MYSQLI_REPORT_ALL);
-
 		try{
 			$conn = new mysqli($this->host['host'], $this->host['user'], $this->host['passwd'], $this->host['db']);
 
@@ -27,4 +30,24 @@ class db {
 			die('Line '.__LINE__.' : '.$e->getMessage());
 		}
 	}
+
+    /**
+     * @param $sql
+     * @return array
+     */
+    function selectQuery($sql)
+    {
+        $list = [];
+
+        $result = $this->Conn()->query($sql);
+
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+
+                $list[] = $row;
+            }
+        }
+        return $list;
+    }
 }
