@@ -1,11 +1,4 @@
-<?php
-include_once "header.php";
-$page = empty($_GET['page']) ? 1 : $_GET['page'];
-$MysqlQuery = new MysqlQuery($db_book);
-$classlists = $MysqlQuery->getLists('class', '', 'td_demo02');
-$date = date('Y-m-d H:i:s');
-$sql = "INSERT INTO `td_demo02`(`book_name`, `pri`, `out_time`, `class`) VALUES ('A Brief History of Time','40', '$date', '物理')";
-?>
+<?php include_once "header.php"; ?>
 <form method="get" action="?class=<?= $_POST['class']; ?>">
     <input id="bookname" type="text" name="book" value="<?php if(!empty($_GET['book'])) echo $_GET['book'];?>" placeholder="请输入书名">
     <select name="class">
