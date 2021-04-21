@@ -7,7 +7,7 @@ use mysqli;
 
 class db {
 
-    public array $host;
+    public $host;
 
     function __construct($host)
     {

@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 mysqli_report(MYSQLI_REPORT_ALL);
 
 require_once "main/db.php";

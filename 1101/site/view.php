@@ -6,15 +6,15 @@ $classlists = $MysqlQuery->getLists('class', '', 'td_demo02');
 $date = date('Y-m-d H:i:s');
 $sql = "INSERT INTO `td_demo02`(`book_name`, `pri`, `out_time`, `class`) VALUES ('A Brief History of Time','40', '$date', '物理')";
 ?>
-<form method="post">
-    <input id="bookname" type="text" name="book" placeholder="请输入书名">
+<form method="get" action="?class=<?= $_POST['class']; ?>">
+    <input id="bookname" type="text" name="book" value="<?php if(!empty($_GET['book'])) echo $_GET['book'];?>" placeholder="请输入书名">
     <select name="class">
         <option value="">不限</option>
         <?php foreach ($classlists as $item): ?>
-        <option value="<?= $item['class']; ?>"><?= $item['class']; ?></option>
+        <option value="<?= $item['class']; ?>" <?php if($item['class'] == $_GET['class']) echo 'selected'?>><?= $item['class']; ?></option>
         <?php endforeach; ?>
     </select>
-    <input id="submit" type="submit" name="sub">
+    <input id="submit" type="submit">
 </form>
 <table id="table" width="799" height="200" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -31,16 +31,14 @@ $sql = "INSERT INTO `td_demo02`(`book_name`, `pri`, `out_time`, `class`) VALUES 
                 </tr>
                 <?php
                 try {
-                    $sqlstr = "SELECT `id`, `book_name`, `pri`, `out_time`, `class` FROM `td_demo02` WHERE 1";
+                    $sqlstr = "SELECT `id`, `book_name`, `pri`, `out_time`, `class` FROM `td_demo02` WHERE 1 ";
 
-                    if(isset($_POST['sub'])){
+                    $search = empty($_GET['book']) ? '' : " and book_name like '%".$_GET['book']."%'";;
 
-                        $search = empty($_POST['book']) ? '' : "and book_name like '%".$_POST['book']."%'";;
+                    $class = empty($_GET['class']) ? '' : " and class = '".$_GET['class']."'";
 
-                        $class = empty($_POST['class']) ? '' : "and class = '".$_POST['class']."'";
-                        
-                        $sqlstr = "SELECT `id`, `book_name`, `pri`, `out_time`, `class` FROM `td_demo02` WHERE 1 $class $search";
-                    }
+                    $sqlstr = $sqlstr . $class . $search;
+
                     $result = $MysqlQuery->Paging($sqlstr,'3');
 
                     foreach ($result as $re) :?>
