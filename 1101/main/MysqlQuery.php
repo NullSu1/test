@@ -41,9 +41,9 @@ class MysqlQuery extends db
 
         if ($page != 1) {
 
-            echo "<a href='?". $_SERVER['QUERY_STRING'] ."&page=1'>首页</a>&nbsp;";
+            echo "<a href='?book=". $_GET['book'] ."&class=". $_GET['class'] ."&page=1'>首页</a>&nbsp;";
 
-            echo "<a href='?". $_SERVER['QUERY_STRING'] ."&page=" . ($page - 1) . "'>上一页</a>&nbsp;&nbsp;";
+            echo "<a href='?book=". $_GET['book'] ."&class=". $_GET['class'] ."&page=" . ($page - 1) . "'>上一页</a>&nbsp;&nbsp;";
 
         } else {
 
@@ -52,9 +52,9 @@ class MysqlQuery extends db
 
         if ($page != $pagecount) {//如果当前页不是最后一页则输出有链接的下一页和尾页
 
-            echo "<a href='?". $_SERVER['QUERY_STRING'] ."&page=" . ($page + 1) . "'>下一页</a>&nbsp;";
+            echo "<a href='?book=". $_GET['book'] ."&class=". $_GET['class'] ."&page=" . ($page + 1) . "'>下一页</a>&nbsp;";
 
-            echo "<a href='?". $_SERVER['QUERY_STRING'] ."&page=" . $pagecount . "'>尾页</a>&nbsp;&nbsp;";
+            echo "<a href='?book=". $_GET['book'] ."&class=". $_GET['class'] ."&page=" . $pagecount . "'>尾页</a>&nbsp;&nbsp;";
 
         } else {
 
