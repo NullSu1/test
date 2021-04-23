@@ -77,6 +77,12 @@ class MysqlQuery extends db
         return false;
     }
 
+    /**
+     * @param string $item
+     * @param string $db
+     * @param string $table
+     * @return array
+     */
     function getLists($item = '', $db = '', $table = ''){
 
         if(!empty($db))

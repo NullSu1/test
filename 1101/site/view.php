@@ -1,4 +1,3 @@
-<?php include_once "header.php"; ?>
 <form method="get" action="?class=<?= $_POST['class']; ?>">
     <input id="bookname" type="text" name="book" value="<?php if(!empty($_GET['book'])) echo $_GET['book'];?>" placeholder="请输入书名">
     <select name="class">
@@ -16,15 +15,15 @@
             <table width="90%" border="1" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#CCCCCC">
                 <tr>
                     <td width="30%" align="center">书名</td>
-                    <td width="30%" align="center">封面</td>
+                    <td width="20%" align="center">封面</td>
                     <td width="10%" align="center">价格</td>
                     <td width="20%" align="center">出版时间</td>
                     <td width="10%" align="center">类别</td>
                     <td width="10%" align="center">操作</td>
                 </tr>
                 <?php
-                try {
-                    $sqlstr = "SELECT `id`, `book_name`, `pri`, `out_time`, `class` FROM `td_demo02` WHERE 1 ";
+
+                    $sqlstr = "SELECT * FROM `td_demo02` WHERE 1 ";
 
                     $search = empty($_GET['book']) ? '' : " and book_name like '%".$_GET['book']."%'";;
 
@@ -32,34 +31,27 @@
 
                     $sqlstr = $sqlstr . $class . $search;
 
-                    $result = $MysqlQuery->Paging($sqlstr,'3');
+                    $result = $MysqlQuery->Paging($sqlstr,'5');
 
+//                    var_dump($result);
+//                    die();
                     foreach ($result as $re) :?>
                         <tr>
                             <td width="30%" align="center" bgcolor="#FFFFFF"><?= $re['book_name']; ?></td>
-                            <td width="30%" align="center" bgcolor="#FFFFFF"><?= $re['book_name']; ?></td>
+                            <td width="20%" align="center" bgcolor="#FFFFFF"><img src="<?= $re['cover_art'];?>" height="75" width="100"></td>
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['pri']; ?></td>
                             <td width="20%" align="center" bgcolor="#FFFFFF"><?= $re['out_time']; ?></td>
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['class']; ?></td>
-                            <td width="10%" align="center" bgcolor="#FFFFFF"><a href="">操作</a></td>
+                            <td width="10%" align="center" bgcolor="#FFFFFF"><a href="?action=transaction">操作</a></td>
                         </tr>
-                    <?php endforeach;
-                } catch (mysqli_sql_exception $e) {
-
-                    echo $sqlstr;
-
-                    die('Line ' . __LINE__ . ' : ' . $e->getMessage());
-                }
-                ?>
+                    <?php endforeach; ?>
 
                 <tr>
                     <td height="25" colspan="6" align="left" bgcolor="#FFFFFF">&nbsp;&nbsp;
-                        <?php $MysqlQuery->Paging($sqlstr,'3', false); ?>
+                        <?php $MysqlQuery->Paging($sqlstr,'5', false); ?>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
-<?php include_once "footer.php"; ?>
-

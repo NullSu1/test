@@ -19,11 +19,11 @@
 						<td width="193" align="center" valign="middle">
 							<b id="date"><?php echo date("Y-m-d"); ?></b></td>
 						<td width="101" align="center" valign="middle"><a id="homepage" href="index.php" class="a">浏览目录</a></td>
-						<td width="102" align="center" valign="middle"><a href="#">添加图书</a></td>
+						<td width="102" align="center" valign="middle"><a href="?action=update">添加图书</a></td>
 						<td width="101" align="center" valign="middle"><a id="search" href="search.php">简单查询</a></td>
 						<td width="101" align="center" valign="middle"><a href="#">高级查询</a></td>
 						<td width="101" align="center" valign="middle"><a href="#">分组统计</a></td>
-						<td width="99" align="center" valign="middle"><a href="login.php">退出系统</a></td>
+						<td width="99" align="center" valign="middle"><a href="?action=login">退出系统</a></td>
 					</tr>
 				</table>
 			</td>
