@@ -3,10 +3,12 @@
 //error_reporting(-1);
 error_reporting(0);
 //mysqli_report(MYSQLI_REPORT_ALL);
+session_start();
 
 require_once "main/db.php";
 require_once "main/db_config.php";
 require_once "main/getList.php";
+require_once "main/functions.php";
 include_once "main/MysqlQuery.php";
 
 $page = empty($_GET['page']) ? 1 : $_GET['page'];
@@ -18,6 +20,8 @@ $classlists = $MysqlQuery->getLists('class', '', 'td_demo02');
 $date = date('Y-m-d H:i:s');
 
 include_once "site/header.php";
+
+if (!checkLog()) $_GET['action'] = 'login';
 
 switch ($_GET['action']){
 
@@ -48,6 +52,12 @@ switch ($_GET['action']){
 
     case 'transaction':
 
+        if(empty($_GET['id'])) echo "<script>alert('error!');window.location.href='index.php'</script>";
+
+        $id = addslashes($_GET['id']);
+
+        $result = $MysqlQuery->selectQuery("SELECT * FROM `td_demo02` WHERE 1 and `td_demo02`.`id`='$id'")[0];
+
         include_once "site/transaction.php";
 
         break;
@@ -62,7 +72,7 @@ switch ($_GET['action']){
 
             $passwd = addslashes($_POST['pwd']);
 
-            $sql = "SELECT `passwd` FROM `user` WHERE 1 and `user`.`user`='$name'";
+            $sql = "SELECT `passwd`,`balance` FROM `user` WHERE 1 and `user`.`user`='$name'";
 
             $re = $MysqlQuery->Conn()->query($sql)->fetch_assoc();
 
@@ -72,7 +82,11 @@ switch ($_GET['action']){
 
             if($passwd == $needle) {
 
-                echo "<script>alert('sing in!');window.location.href='index.php'</script>";
+                $_SESSION["user"] = $name;
+
+                $_SESSION["balance"] = $re['balance'];
+
+                echo "<script>alert('".$name."');window.location.href='index.php'</script>";
             }
 
         } else if (isset($_POST['up'])){
@@ -91,55 +105,22 @@ switch ($_GET['action']){
         }
 
         break;
+    case 'order':
+        $id = addslashes($_POST['id']);
+
+        $sqlstr = "SELECT `book_name`, `cover_art`, `pri`, `author` FROM `td_demo02` WHERE 1 and id='$id'";
+
+        $result = $MysqlQuery->selectQuery($sqlstr)[0];
+
+        $order = authcode($_SESSION['user'].$result['author']);
+
+        include_once "site/order.php";
+
+        break;
 
     default :
 
         include_once "site/view.php";
 }
 include_once "site/footer.php";
-
-function authcode(string $string, $key = '', $operation = false, $expiry = 0): string
-{
-    $ckey_length = 4;
-    $key = md5($key ? $key : "DEFAULT_KEYS");
-    $keya = md5(substr($key, 0, 16));
-    $keyb = md5(substr($key, 16, 16));
-    $keyc = $ckey_length ? ($operation ? substr($string, 0, $ckey_length) : substr(md5(microtime()), -$ckey_length)) : '';
-
-    $cryptkey = $keya . md5($keya . $keyc);
-    $key_length = strlen($cryptkey);
-    $string = $operation ? base64_decode(substr($string, $ckey_length)) :
-        sprintf('%010d', ($expiry ? $expiry + time() : 0)) . substr(md5($string . $keyb), 0, 16) . $string;
-    $string_length = strlen($string);
-    $result = '';
-    $box = range(0, 255);
-    $rndkey = array();
-    for ($i = 0; $i <= 255; $i++) {
-        $rndkey[$i] = ord($cryptkey[$i % $key_length]);
-    }
-    for ($j = $i = 0; $i < 256; $i++) {
-        $j = ($j + $box[$i] + $rndkey[$i]) % 256;
-        $tmp = $box[$i];
-        $box[$i] = $box[$j];
-        $box[$j] = $tmp;
-    }
-    for ($a = $j = $i = 0; $i < $string_length; $i++) {
-        $a = ($a + 1) % 256;
-        $j = ($j + $box[$a]) % 256;
-        $tmp = $box[$a];
-        $box[$a] = $box[$j];
-        $box[$j] = $tmp;
-        $result .= chr(ord($string[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
-    }
-    if ($operation) {
-        if ((substr($result, 0, 10) == 0 || substr($result, 0, 10) - time() > 0) &&
-            substr($result, 10, 16) == substr(md5(substr($result, 26) . $keyb), 0, 16)) {
-            return substr($result, 26);
-        } else {
-            return '';
-        }
-    } else {
-        return $keyc . str_replace('=', '', base64_encode($result));
-    }
-}
 

@@ -42,7 +42,7 @@
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['pri']; ?></td>
                             <td width="20%" align="center" bgcolor="#FFFFFF"><?= $re['out_time']; ?></td>
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['class']; ?></td>
-                            <td width="10%" align="center" bgcolor="#FFFFFF"><a href="?action=transaction">操作</a></td>
+                            <td width="10%" align="center" bgcolor="#FFFFFF"><a href="?action=transaction&id=<?= $re['id']; ?>">操作</a></td>
                         </tr>
                     <?php endforeach; ?>
 
