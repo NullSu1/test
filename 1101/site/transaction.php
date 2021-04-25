@@ -18,8 +18,8 @@
         <td width="10%" align="center" bgcolor="#FFFFFF"><?= $result['author']; ?></td>
     </tr>
 </table>
-<form method="post" action="?action=order">
-    <input type="hidden" name="id" value="<?= $result['id']; ?>">
-    <input type="submit" name="buy" value="购买">
+<form method="post" action="?action=order&id=<?= $result['id']; ?>">
+<!--    <input type="hidden" name="id" value="--><?//= $result['id']; ?><!--">-->
+    <input type="submit" value="购买">
 </form>
 
