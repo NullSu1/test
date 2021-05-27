@@ -1,5 +1,3 @@
-<a href="https://www.iobit.com/buy.php?product=jp-au141pcpurchase3480&ref=jp_au141pcpurchase2101a3480<?= $_GET['a']?>&refs=jp_purchase_au">今すぐアップグレード</a>
-<!--<a href='qweqwe"></a><script>alert('qwe')</script><a href="'>q</a>-->
 <?php
 /**
  * @param $length
@@ -9,7 +7,7 @@
 function getCode($length, $type = true): string
 {
 	if ($type) {
-		$characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyz'.strtoupper('abcdefghijklmnopqrstuvwxyz');
 	} else {
 		$characters = '0123456789';
 	}
@@ -39,7 +37,7 @@ function timeDiff($end, $start): string
 	$i = intval($diff / 60);
 	return $y . "年" . $m . "月" . $d . "天" . $h . "时" . $i . "分";
 }
-
+echo timeDiff('1624118399','1621423064');
 /**
  * @param $str
  * @return string|string[]
@@ -277,19 +275,4 @@ function Same($handle, $needle): bool
 	}
 	return false;
 }
-$k = [4,3,2,1,4];
-arsort($k);
-var_dump($k);
-
-echo @Same($_GET['a'], 'qwerty') ? '123' : 'kkk';
-
-print_r(array_change_key_case(array_count_values(str_split('qwwerty')), CASE_UPPER));
-echo "<br>";
-$a = [1, 2, 3, 4, 5, 6, 7];
-var_dump(array_reverse($a));
-var_dump(implode(array_merge($a, array_fill(count($a), 128 - count($a), 0))));
-var_dump(implode(array_pad($a, 128, 0)));
-var_dump(str_pad(implode($a), 128, 0));
-var_dump($secret_code = authcode(bin2hex(json_encode(['status' => 200, 'data' => '', 'massage' => 'Request success'])), md5('1q2w3e')));
-
-var_dump(hex2bin(authcode($secret_code, md5('1q2w3e'), true)));
+var_dump(str_count_array('qweqwewerweter'));

@@ -37,3 +37,8 @@ class Price
         return round($total, 2);
     }
 }
+
+$new = new Price();
+$new->add('BUTTER',23);
+$new->add('MILK',23);
+echo $new->getTotal();

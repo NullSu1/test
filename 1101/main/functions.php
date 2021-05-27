@@ -46,8 +46,19 @@ function authcode(string $string, $key = '', $operation = false, $expiry = 0): s
 
 function CheckLog(){
     if(empty($_SESSION['user'])){
+
         return false;
     }
+    if($_SESSION['expiretime'] < time()) {
+
+        unset($_SESSION['expiretime']);
+
+        header('Location: logout.php?TIMEOUT'); // 登出
+
+        return false;
+    }
+    $_SESSION['expiretime'] = time() + 3600;
+
     return true;
 }
 
@@ -97,6 +108,8 @@ function decrypt($data, $key): string
     $data = base64_decode($data);
     $len = strlen($data);
     $l = strlen($key);
+    $char = '';
+    $str = '';
     for ($i = 0; $i < $len; $i++) {
         if ($x == $l) {
             $x = 0;

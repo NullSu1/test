@@ -4,20 +4,20 @@
         <table border="1">
             <tr>
                 <td>书名</td>
-                <td><input type="text" name="book_name"></td>
+                <td><input type="text" name="book_name" required></td>
             </tr>
             <tr>
                 <td>封面</td>
-                <td><input type="file" name="file"></td>
+                <td><input type="file" name="file" required></td>
             </tr>
             <tr>
                 <td>价格</td>
-                <td><input type="number" name="pri"></td>
+                <td><input type="number" name="pri" required></td>
             </tr>
             <tr>
                 <td>类别</td>
                 <td>
-                    <select name="class">
+                    <select name="class" required>
                         <option value="">---option---</option>
                         <?php foreach ($class_li as $item): ?>
                         <option value="<?= $item; ?>"><?= $item; ?></option>

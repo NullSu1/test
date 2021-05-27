@@ -19,14 +19,16 @@ ini_set('log_errors', 'on');
 ini_set('error_log', $file . "erroryes.log");
 require 'geoip2.phar';
 $reader = new GeoIp2\Database\Reader('GeoLite2-City.mmdb');
-echo $ip = getIP();
+echo $ip = '192.168.7.229';
+//echo $ip = getIP();
 try {
-	$record = $reader->city($ip);
-	$continent = $record->continent->names['en'];
+	$record = $reader->city('116.73.170.234');
+//	$continent = $record->continent->names['en'];
 	$city = $record->city->names['en'];
+	var_dump($record->country->names['en']);
 	var_dump($record->country->isoCode);
-	error_log("ip:" . getIP() . "  主机时间:" . date("Y-m-d H:i:s") . "   查询地址:" . $ip);
+//	error_log("ip:" . getIP() . "  主机时间:" . date("Y-m-d H:i:s") . "   查询地址:" . $ip);
 } catch (GeoIp2\Exception\AddressNotFoundException $e) {
 	echo 'UNKNOWN';
-	error_log("ip:" . getIP() . "  主机时间:" . date("Y-m-d H:i:s") . "   查询地址:" . $ip);
+//	error_log("ip:" . getIP() . "  主机时间:" . date("Y-m-d H:i:s") . "   查询地址:" . $ip);
 }

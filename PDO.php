@@ -18,6 +18,7 @@ $PDO_conf = array(
 
 );
 
+$sql = "INSERT INTO `order`(`id`, `user`, `book_id`, `order`, `date`, `time`, `stats`) VALUES ('','','','','','','') ON DUPLICATE KEY UPDATE `stats`=`stats`+1";
 try {
 	$conn1 = new mysqli($PDO_conf['host'], $PDO_conf['db_user'], $PDO_conf['db_pwd'], $PDO_conf['db']);
 

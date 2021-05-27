@@ -1,4 +1,4 @@
-<form method="get" action="?class=<?= $_POST['class']; ?>">
+<form method="get">
     <input id="bookname" type="text" name="book" value="<?php if(!empty($_GET['book'])) echo $_GET['book'];?>" placeholder="请输入书名">
     <select name="class">
         <option value="">不限</option>
@@ -38,7 +38,7 @@
                     foreach ($result as $re) :?>
                         <tr>
                             <td width="30%" align="center" bgcolor="#FFFFFF"><?= $re['book_name']; ?></td>
-                            <td width="20%" align="center" bgcolor="#FFFFFF"><img src="<?= $re['cover_art'];?>" height="75" width="100"></td>
+                            <td width="20%" align="center" bgcolor="#FFFFFF"><img src="<?= $re['cover_art'];?>" height="55" width="100"></td>
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['pri']; ?></td>
                             <td width="20%" align="center" bgcolor="#FFFFFF"><?= $re['out_time']; ?></td>
                             <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['class']; ?></td>
@@ -47,7 +47,7 @@
                     <?php endforeach; ?>
 
                 <tr>
-                    <td height="25" colspan="6" align="left" bgcolor="#FFFFFF">&nbsp;&nbsp;
+                    <td style="text-align: left;background: #FFFFFF" height="25" colspan="6">&nbsp;&nbsp;
                         <?php $MysqlQuery->Paging($sqlstr,'5', false); ?>
                     </td>
                 </tr>

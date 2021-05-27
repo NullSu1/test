@@ -35,7 +35,7 @@
                 foreach ($result as $re) :?>
                     <tr>
                         <td width="30%" align="center" bgcolor="#FFFFFF"><?= $re['book_name']; ?></td>
-                        <td width="20%" align="center" bgcolor="#FFFFFF"><img src="<?= $re['cover_art'];?>" height="75" width="100"></td>
+                        <td width="20%" align="center" bgcolor="#FFFFFF"><img src="<?= $re['cover_art'];?>" height="55" width="100"></td>
                         <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['pri']; ?></td>
                         <td width="20%" align="center" bgcolor="#FFFFFF"><?= $re['out_time']; ?></td>
                         <td width="10%" align="center" bgcolor="#FFFFFF"><?= $re['class']; ?></td>

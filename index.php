@@ -1,30 +1,35 @@
-<!--<form method="post" enctype="multipart/form-data">-->
-<!--    <input type="file" name="file">-->
-<!--    <input type="submit" name="sub">-->
-<!--</form>-->
 <?php
-//if(!is_dir('images/new')){
-//
-//    mkdir('images/new');
-//}
-//
-//if(isset($_POST['sub']))
-////    var_dump($_FILES);
-//    move_uploaded_file($_FILES['file']['tmp_name'], 'images/new/'.basename($_FILES['file']['name']));
+var_dump(strtotime('2021-6-19 23:59:59'));
+var_dump(strtotime('2021-05-19 19:17:44'));
+var_dump(date('Y-m-d H:i:s',strtotime("-16 hours")));
+var_dump(strtotime("-16 hours"));
 
-if(!empty($_GET['ref'])){
 
-    $ref = strtolower($_GET['ref']);
-    $re = strstr($ref,'ir');
+$db_book = [
+    'host' => '127.0.0.1',
+    'user' => 'root',
+    'passwd' => '',
+    'db' => 'book'
+];
 
-    if($re !== false){
+mysqli_report(MYSQLI_REPORT_ALL);
+function Conn($db_book)
+{
+    try {
+        $conn = new mysqli($db_book['host'], $db_book['user'], $db_book['passwd'], $db_book['db']);
 
-//        var_dump($re = strstr($ref,'ir'));
-        var_dump($re);
-        var_dump($ref);
+        $conn->query("set names 'utf8';");
 
-//        $ref = substr()
+        return $conn;
 
-//        preg_match_all('/([0-9]*)\./', $ref);
+    } catch (exception $e) {
+
+        die('Line ' . __LINE__ . ' : ' . $e->getMessage());
     }
 }
+
+$new = Conn($db_book);
+
+$sql = "SELECT `td_demo02`.`cover_art`, `td_demo02`.`pri`, `order`.`order` FROM (`order` join `td_demo02` on `order`.`book_id`=`td_demo02`.`id`) WHERE `order`.`user`='张三' and `order`.`book_id`=5";
+$new->query($sql);
+var_dump($new->query($sql)->fetch_assoc());
