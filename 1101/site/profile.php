@@ -15,13 +15,13 @@
         <tr>
             <td>余额</td>
             <td>
-                <input type="text" disabled value="<?= $re[0]['balance']; ?>" style="width: 50px">
+                <input type="text" disabled value="<?= $_SESSION['balance']; ?>" style="width: 50px">
                 <button style="float: right;"><a href="#">充值</a></button>
             </td>
         </tr>
         <tr>
             <td>注册时间</td>
-            <td><input type="text" value="<?= $re[0]['date']; ?>"></td>
+            <td><input type="text" disabled value="<?= $re[0]['date']; ?>"></td>
         </tr>
     </table>
     <br>

@@ -4,7 +4,6 @@
 error_reporting(0);
 //mysqli_report(MYSQLI_REPORT_ALL);
 session_start();
-ini_set("session.cookie_lifetime", '3600');
 require_once "main/db.php";
 require_once "main/db_config.php";
 require_once "main/functions.php";

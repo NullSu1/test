@@ -8,46 +8,20 @@ use mysqli;
 class db {
 
     public $host;
+    public $conn;
 
     function __construct($host)
     {
-        $this->host = $host;
-    }
+        try{
+            $this->conn = new mysqli($host['host'], $host['user'], $host['passwd'], $host['db']);
 
-    /**
-     * @return mysqli
-     */
-    function Conn(){
-		try{
-			$conn = new mysqli($this->host['host'], $this->host['user'], $this->host['passwd'], $this->host['db']);
+            $this->conn->query("set names 'utf8';");
 
-			$conn->query("set names 'utf8';");
+            return $this->conn;
 
-			return $conn;
+        }catch (exception $e){
 
-		}catch (exception $e){
-
-			die('Line '.__LINE__.' : '.$e->getMessage());
-		}
-	}
-
-    /**
-     * @param $sql
-     * @return array
-     */
-    function selectQuery($sql)
-    {
-        $list = [];
-
-        $result = $this->Conn()->query($sql);
-
-        if ($result->num_rows > 0) {
-
-            while ($row = $result->fetch_assoc()) {
-
-                $list[] = $row;
-            }
+            die('Line '.__LINE__.' : '.$e->getMessage());
         }
-        return $list;
     }
 }

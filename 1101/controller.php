@@ -68,6 +68,8 @@ switch ($_GET['action']){
             $class = addslashes($_POST['class']);
             $author = $_SESSION['user'];
 
+
+
             $sql = "INSERT INTO `td_demo02`(`book_name`, `cover_art`, `pri`, `out_time`, `class`, `author`) 
                     VALUES ('$name','$cover_pic','$pir','$date','$class', '$author')";
 
@@ -127,7 +129,10 @@ switch ($_GET['action']){
 
                 exit("<script>alert('余额不足');</script>");
             }
+
             $MysqlQuery->changeQuery($sql);
+
+            $_SESSION['balance'] -= $result['pri'];
         }
         if(isset($_POST['cancel'])){
 

@@ -18,39 +18,27 @@ $PDO_conf = array(
 
 );
 
-$sql = "INSERT INTO `order`(`id`, `user`, `book_id`, `order`, `date`, `time`, `stats`) VALUES ('','','','','','','') ON DUPLICATE KEY UPDATE `stats`=`stats`+1";
-try {
-	$conn1 = new mysqli($PDO_conf['host'], $PDO_conf['db_user'], $PDO_conf['db_pwd'], $PDO_conf['db']);
+$conn1 = new mysqli($PDO_conf['host'], $PDO_conf['db_user'], $PDO_conf['db_pwd'], $PDO_conf['db']);
 
-	$conn2 = new mysqli($PDO_conf['host'], $PDO_conf['db_user'], $PDO_conf['db_pwd'], $PDO_conf['db2']);
+//	$conn2 = new mysqli($PDO_conf['host'], $PDO_conf['db_user'], $PDO_conf['db_pwd'], $PDO_conf['db2']);
 
-	$conn1->query("set names 'utf8';");
+$sql2 = "SELECT a.`SId` FROM (select * from `sc` where `CId`='01') as a, (select* from `sc` where `CId`='02') as b WHERE a.`score` = b.`score` AND a.`SId`=b.`SId`";
+$sql = "SELECT `student`.*, sc.`score` from `sc` join `student` on `sc`.`SId` = `student`.`SId` where `sc`.`SId` IN (" . $sql2 . ") group by `SId`";
 
-    $conn2->query("set names 'utf8';");
+$sql3 = "SELECT SId FROM sc GROUP BY SId HAVING avg(score)>80";
+$sql4 = "SELECT * FROM `sc` GROUP BY CId";
+$result = $conn1->query("$sql4");
 
-    $sql = "SELECT insur, count(*) as num FROM `active_gather_class` WHERE 1 group by insur";
+if ($result->num_rows > 0) {
 
-    var_dump(microtime());
+    while ($row = $result->fetch_assoc()) {
 
-    $re = $conn1->query($sql, MYSQLI_ASSOC);
-    foreach ($re as $item){
-        $rows[] = $item;
+        $list[] = $row;
     }
-    var_dump($rows);
-
-    var_dump(microtime());
-
-    $re = $conn2->query($sql, MYSQLI_ASSOC);
-    foreach ($re as $item){
-        $row[] = $item;
-    }
-    var_dump($row);
-
-    var_dump(microtime());
-
-} catch (mysqli_sql_exception $e) {
-	die('Line '.__LINE__.' : '.$e->getMessage());
 }
+var_dump($list);
+
+
 
 die();
 

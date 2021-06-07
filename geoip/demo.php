@@ -19,10 +19,10 @@ ini_set('log_errors', 'on');
 ini_set('error_log', $file . "erroryes.log");
 require 'geoip2.phar';
 $reader = new GeoIp2\Database\Reader('GeoLite2-City.mmdb');
-echo $ip = '192.168.7.229';
+echo $ip = '141.164.39.61';
 //echo $ip = getIP();
 try {
-	$record = $reader->city('116.73.170.234');
+	$record = $reader->city('141.164.39.61');
 //	$continent = $record->continent->names['en'];
 	$city = $record->city->names['en'];
 	var_dump($record->country->names['en']);

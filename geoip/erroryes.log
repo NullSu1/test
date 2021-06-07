@@ -43,3 +43,9 @@
 [29-Apr-2021 16:30:34 Asia/Shanghai] ip:127.0.0.1  主机时间:2021-04-29 16:30:34   查询地址:192.168.6.245
 [29-Apr-2021 16:31:02 Asia/Shanghai] ip:127.0.0.1  主机时间:2021-04-29 16:31:02   查询地址:192.168.7.229
 [29-Apr-2021 17:31:15 Asia/Shanghai] ip:127.0.0.1  主机时间:2021-04-29 17:31:15   查询地址:192.168.7.229
+[07-Jun-2021 09:18:46 UTC] PHP Fatal error:  Uncaught InvalidArgumentException: The file "http://192.168.1.82/_254/Web/Yuri/GeoLite2-City.mmdb" does not exist or is not readable. in phar://E:/wamp64/www/test/geoip/geoip2.phar/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php:47
+Stack trace:
+#0 phar://E:/wamp64/www/test/geoip/geoip2.phar/src/Database/Reader.php(53): MaxMind\Db\Reader->__construct('http://192.168....')
+#1 E:\wamp64\www\test\geoip\demo.php(21): GeoIp2\Database\Reader->__construct('http://192.168....')
+#2 {main}
+  thrown in phar://E:/wamp64/www/test/geoip/geoip2.phar/vendor/maxmind-db/reader/src/MaxMind/Db/Reader.php on line 47

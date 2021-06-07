@@ -75,13 +75,33 @@ class MysqlQuery extends db
      */
     function changeQuery($sql){
 
-        parent::Conn()->query($sql);
+        $this->conn->query($sql);
 
-        if($this->Conn()->affected_rows > 0){
+        if($this->conn->affected_rows > 0){
 
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param $sql
+     * @return array
+     */
+    function selectQuery($sql)
+    {
+        $list = [];
+
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0) {
+
+            while ($row = $result->fetch_assoc()) {
+
+                $list[] = $row;
+            }
+        }
+        return $list;
     }
 
     /**
@@ -93,7 +113,7 @@ class MysqlQuery extends db
     function getLists($item = '', $db = '', $table = ''){
 
         if(!empty($db))
-            $this->Conn()->select_db($db);
+            $this->conn->select_db($db);
 
         $sql = "select $item from `$table` where 1 group by $item";
 

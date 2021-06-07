@@ -1,10 +1,8 @@
 <?php
-var_dump(strtotime('2021-6-19 23:59:59'));
-var_dump(strtotime('2021-05-19 19:17:44'));
-var_dump(date('Y-m-d H:i:s',strtotime("-16 hours")));
-var_dump(strtotime("-16 hours"));
-
-
+var_dump(strtotime('2021-05-24 23:59:59'));
+var_dump(strtotime('2021-05-31 23:59:59'));
+echo base64_encode(json_encode(['os'=>'win10','byte'=>'64','ln'=>'zh-cn','type'=>'free']));
+die();
 $db_book = [
     'host' => '127.0.0.1',
     'user' => 'root',
