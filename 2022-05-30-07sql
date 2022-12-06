@@ -1,0 +1,9 @@
+set charset utf8;
+CREATE TABLE `test` (
+  `id` int NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `score` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `test_id_uindex` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+insert into `test`(`id`,`name`,`score`) values('1','null','89');

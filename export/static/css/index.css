@@ -1,0 +1,36 @@
+.main {
+    margin-top:50px;
+    margin-bottom:100px;
+    margin-right:50px;
+    margin-left:50px;
+}
+
+a {
+    color: black;
+    text-decoration: black;
+}
+
+.tdcenter {
+    text-align: center;
+    width: 400px;
+}
+.main .start-date {
+    display:inline
+}
+.main .end-date {
+    display:inline
+}
+.main button {
+    border-radius: 9px;
+    width: 80px;
+    height: 30px;
+}
+._box {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+.export-button {
+    position: absolute;
+    left: 0;
+}

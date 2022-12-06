@@ -1,0 +1,82 @@
+firewall-cmd --permanent --add-rich-rule="rule family="ipv4" source address="45.79.27.174" port protocol="tcp" port="9200" accept
+
+                            array(39) {
+  ["entity_id"]=>
+  string(4) "3826"
+  ["attribute_set_id"]=>
+  string(1) "9"
+  ["type_id"]=>
+  string(6) "simple"
+  ["sku"]=>
+  string(7) "KNYNS27"
+  ["has_options"]=>
+  string(1) "1"
+  ["required_options"]=>
+  string(1) "1"
+  ["created_at"]=>
+  string(19) "2021-10-27 10:20:57"
+  ["updated_at"]=>
+  string(19) "2022-11-02 09:23:11"
+  ["product_viewed_times"]=>
+  string(2) "57"
+  ["price"]=>
+  string(10) "159.000000"
+  ["tax_class_id"]=>
+  string(1) "2"
+  ["final_price"]=>
+  string(9) "69.000000"
+  ["minimal_price"]=>
+  string(9) "69.000000"
+  ["min_price"]=>
+  string(9) "69.000000"
+  ["max_price"]=>
+  string(9) "69.000000"
+  ["tier_price"]=>
+  NULL
+  ["reviews_count"]=>
+  string(1) "5"
+  ["rating_summary"]=>
+  string(2) "99"
+  ["is_salable"]=>
+  string(1) "1"
+  ["cat_index_position"]=>
+  int(1)
+  ["name"]=>
+  string(84) "Karativa Personalized Name Heart Layered Sterling Silver Necklace for Your Loved One"
+  ["image"]=>
+  string(21) "/y/g/yg-knyns27_2.jpg"
+  ["small_image"]=>
+  string(21) "/y/g/yg-knyns27_2.jpg"
+  ["thumbnail"]=>
+  string(21) "/k/n/knyns27_6__2.jpg"
+  ["url_key"]=>
+  string(84) "karativa-personalized-name-heart-layered-sterling-silver-necklace-for-your-loved-one"
+  ["msrp_display_actual_price_type"]=>
+  string(1) "0"
+  ["swatch_image"]=>
+  string(12) "no_selection"
+  ["special_price"]=>
+  string(9) "69.000000"
+  ["special_from_date"]=>
+  string(19) "2021-10-20 00:00:00"
+  ["status"]=>
+  string(1) "1"
+  ["is_featured"]=>
+  string(1) "0"
+  ["new"]=>
+  string(1) "1"
+  ["metal_color"]=>
+  string(3) "152"
+  ["overseas_warehouse"]=>
+  string(1) "0"
+  ["is_display_paypal_button"]=>
+  string(1) "0"
+  ["best_seller"]=>
+  string(1) "1"
+  ["request_path"]=>
+  string(89) "karativa-personalized-name-heart-layered-sterling-silver-necklace-for-your-loved-one.html"
+  ["store_id"]=>
+  int(1)
+  ["category_id"]=>
+  string(2) "91"
+}
