@@ -18,7 +18,7 @@ function getCode($length, $type = true): string
 	return $randomString;
 }
 
-echo getCode(12);
+echo getCode(12);die;
 /**
  * @param $end
  * @param $start

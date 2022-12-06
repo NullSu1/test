@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(0);
+error_reporting(E_ALL);
 $d = new mysqli_driver();
 //$d->report_mode = MYSQLI_REPORT_ALL;
 
@@ -11,8 +11,6 @@ $PDO_conf = array(
 	'db'   => 'test',
 
 	'db2'   => 'iobit',
-
-	'db_user' => 'root',
 
 	'db_pwd' => '',
 

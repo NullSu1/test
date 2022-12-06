@@ -1,6 +1,12 @@
 {
     "require": {
         "facebook/graph-sdk": "^5.7",
-        "alibabacloud/dm-20151123": "1.0.0"
+        "alibabacloud/dm-20151123": "1.0.0",
+        "ext-mysqli": "*",
+        "ext-curl": "*",
+        "ext-json": "*",
+      "ext-gd": "*",
+      "ext-pdo": "*",
+      "ext-mbstring": "*"
     }
 }

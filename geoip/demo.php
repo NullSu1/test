@@ -13,7 +13,7 @@ function getIP()
 	}
 	return $cip;
 }
-
+error_log(date("Y-m-d H:i:s"));
 $file = "./";
 ini_set('log_errors', 'on');
 ini_set('error_log', $file . "erroryes.log");
